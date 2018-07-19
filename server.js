@@ -17,3 +17,17 @@ const server = http.createServer(app);
 server.listen(port, () => console.log('running'));
 
 //npm install --no-progress
+/**INSTALLED_APPS = (
+    ...
+    'corsheaders',
+    ...
+)
+
+MIDDLEWARE_CLASSES = (
+    ...
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    ...
+)
+
+CORS_ORIGIN_ALLOW_ALL = True   */

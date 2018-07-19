@@ -1,0 +1,15 @@
+
+<mat-sidenav-container >
+  <mat-sidenav #sidenav mode="side" opened="true">
+   <p>Menu 1</p> 
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+    <span class="example-fill-remaining-space">Bienvenido</span>
+    <mat-icon (click)="sidenav.toggle()">
+      <i class="material-icons">
+      menu
+      </i>
+    </mat-icon>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
