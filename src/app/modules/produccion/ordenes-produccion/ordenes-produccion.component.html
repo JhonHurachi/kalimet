@@ -1,0 +1,24 @@
+<mat-toolbar class="barra">
+    <span class="example-fill-remaining-space">Bienvenido</span>
+    
+      <mat-icon (click)="sidenav.toggle()" class="menu">
+        <i class="material-icons">
+        menu
+        </i>
+      </mat-icon>
+    
+  </mat-toolbar>
+<mat-sidenav-container >
+    <mat-sidenav #sidenav mode="side" opened="true" class="lateral" [fixedInViewport]="true">    
+        <img src="../../assets/kalimet.png" />
+        <ul class="lista">
+          <li>
+            <button mat-button [routerLink]="['/produccion']">Orden de Producción</button>
+          </li>
+        </ul>
+    </mat-sidenav>
+    <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+  </mat-sidenav-container>
+  

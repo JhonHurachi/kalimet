@@ -18,3 +18,8 @@
   background-color: #F80000;
   color: white;
 }
+
+.menu :hover{
+    cursor: pointer;
+    cursor: hand;
+}
