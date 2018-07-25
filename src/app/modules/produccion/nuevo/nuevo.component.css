@@ -1,4 +1,9 @@
 .cabecera{
-    border: 5px;
-    border-color: blue;
+    border: 2px solid red;
+    border-radius:5px;
+    padding: 20px;
+}
+
+.campo{
+    width: 100% !important;
 }

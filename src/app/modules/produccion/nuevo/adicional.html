@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Adicional</h2>
+<mat-dialog-content>
+        <table  class="campo">
+                <tr>
+                  <td>Nombre</td>
+                  <td>
+                      <mat-form-field class="campo">
+                          <input matInput [(ngModel)]="adicional.nombre">
+                        </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                    <td>Contacto</td>
+                    <td>
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="adicional.contacto">
+                          <mat-option *ngFor="let contact of contactos" [value]="contact.value">
+                            {{contact.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="adicional" cdkFocusInitial>Agregar</button>
+</mat-dialog-actions>

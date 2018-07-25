@@ -7,8 +7,12 @@ import {
   MatIconModule,
   MatButtonModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatSelectModule,
+  MatTableModule,
+  MatDialogModule
  } from '@angular/material'
+import { FormsModule } from '../../../../node_modules/@angular/forms';
 
 @NgModule({
   imports: [
@@ -19,7 +23,12 @@ import {
     MatButtonModule,
     FlexLayoutModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatDialogModule
   ],
   exports: [
     MatToolbarModule,
@@ -28,7 +37,12 @@ import {
     MatButtonModule,
     FlexLayoutModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    FormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatDialogModule
   ],
   declarations: []
 })

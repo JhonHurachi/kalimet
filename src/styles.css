@@ -1,1 +1,47 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+* {
+    font-family: 'Roboto';
+}
+.example-fill-remaining-space {
+    flex: 1 1 auto;
+  }
+
+.lateral{
+  text-align: center;
+  background-color: rgb(250, 54, 61);
+}
+
+.lista{
+  text-decoration: none;
+  list-style: none;
+  text-align: left;
+  width: 100%;
+}
+
+.barra{
+  background-color: rgb(250, 54, 61);
+  color: white;
+  margin: 0px;
+}
+
+.menu :hover{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.btnMenu{
+    width: 100%;
+    background-color: rgb(250, 54, 61);
+    color: white;
+}
+
+.btnMenu:hover{
+    background-color: white;
+    color: rgb(250, 54, 61);
+}
+
+.linea{
+    color: white;
+    background-color: white;
+    height: 0px;
+}

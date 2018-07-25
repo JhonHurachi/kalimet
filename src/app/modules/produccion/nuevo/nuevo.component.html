@@ -1,43 +1,111 @@
-<div class="container"
-     fxLayout="column"
-     fxLayout.xs="column"
-     fxLayoutAlign="center"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-  <div class="container, cabecera"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutAlign="center"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-  <div class="item item-1" fxFlex="25%">
-      <form>
-          <mat-form-field appearance="outline">
-            <mat-label>Responsable</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>Fecha de Emisión</mat-label>
-              <input matInput>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>Referencia</mat-label>
-              <input matInput>
-           </mat-form-field>
-        </form>
+<br>
+<div class=""
+  fxLayout="column"
+  [fxLayout.xs]="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0">
+  <div class=""
+  fxLayout="row"
+  fxLayout.xs="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0">
+    <div fxFlex=20% fxFlex.xs=0%></div>
+    <div class="cabecera">
+      <table>
+        <tr>
+          <td>Op.</td>
+          <td>2568</td>
+        </tr>
+        <tr>
+          <td>Responsable</td>
+          <td>
+            <mat-form-field>
+              <mat-select [(ngModel)]="responsable">
+                <mat-option *ngFor="let resp of responsables" [value]="resp.value">
+                  {{resp.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>Fecha Emisión</td>
+          <td>{{fechaActual|date: 'dd/MM/yyyy'}}</td>
+        </tr>
+        <tr>
+          <td>Referencia</td>
+          <td>
+              <mat-form-field class="">
+                  <input matInput>
+                </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div fxFlex=20% fxFlex.xs=0%></div>
   </div>
-  <div class="item item-2" fxFlex="20%" fxFlexOrder="3">Item 2</div>
-  <div class="item item-3" fxFlex fxFlexOrder="1">Item 3</div>
-</div>
-  <div class="item item-2" fxFlex="20%" fxFlexOrder="3">Item 2</div>
-  <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutAlign="center"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
-  <div class="item item-1" fxFlex="15%">Item 1</div>
-  <div class="item item-2" fxFlex="20%" fxFlexOrder="3">Item 2</div>
-  <div class="item item-3" fxFlex>Item 3</div>
-</div>
+  <div class=""
+  fxLayout="row"
+  fxLayout.xs="row"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0">
+    <div fxFlex=10% fxFlex.xs=0%></div>
+    <div class="cabecera" fxFlex=80% fxFlex.xs=100%>
+      <table  class="campo">
+        <tr>
+          <td>Nombre del Presupuesto</td>
+          <td>
+              <mat-form-field class="campo">
+                  <input matInput value="Fabricación e instalación de viguetas techo rev. técnicas">
+                </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+            <td>Contacto</td>
+            <td>
+              <mat-form-field>
+                <mat-select [(ngModel)]="contacto">
+                  <mat-option *ngFor="let contact of contactos" [value]="contact.value">
+                    {{contact.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+        <tr>
+          <td>Adicionales</td>
+          <td><button mat-raised-button (click)="openDialog()">Añadir adicional
+              <mat-icon class="menu">
+                  <i class="material-icons">
+                  add
+                  </i>
+                </mat-icon>
+          </button></td>
+        </tr>
+        <tr *ngFor="let ad of adicionales">
+          <td></td>
+          <td>
+            Título: {{ad.titulo}}<br>
+            Contacto: {{ad.ref}}
+          </td>
+        </tr>
+        <tr>
+          <td>Cliente</td>
+          <td>
+            <mat-form-field>
+              <mat-select [(ngModel)]="cliente">
+                <mat-option *ngFor="let cli of clientes" [value]="cli.value">
+                  {{cli.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>       
+      </table>
+    </div>
+    <div fxFlex=10% fxFlex.xs=0%></div>
+  </div>
 </div>

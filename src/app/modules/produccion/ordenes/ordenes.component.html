@@ -1,5 +1,25 @@
-<button mat-mini-fab class="boton" [routerLink]="'../nuevo'"><mat-icon>
-    <i class="material-icons">
-    add
-    </i>
-  </mat-icon></button>
+<div  style="text-align:center"
+  fxLayoutAling="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs=0>
+  <div fxFlex="15%" fxFlex.xs="0%"></div>
+  <div class=""
+      fxLayout="column"
+      [fxLayout.xs]="column"
+      fxLayoutAlign="center"
+      fxLayoutGap="10px"
+      fxLayoutGap.xs="0"
+      fxFlex="70%" fxFlex.xs="100%">
+      <div>
+        <p>Aún no existen ordenes de producción</p>
+      </div>
+      <div>
+        <button mat-mini-fab class="boton" [routerLink]="'../nuevo'"><mat-icon>
+          <i class="material-icons">
+          add
+          </i>
+        </mat-icon></button>
+      </div>
+    </div>
+    <div fxFlex="15%" fxFlex.xs="0%"></div>
+  </div>
