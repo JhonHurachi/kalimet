@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '../../../../../node_modules/@angular/material';
+import { MatDialog } from '../../../../../node_modules/@angular/material';
 import { Adicional } from './adicional';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
+export interface User {
+  name: string;
+}
 
 @Component({
   selector: 'kal-nuevo',
@@ -8,12 +15,18 @@ import { Adicional } from './adicional';
   styleUrls: ['./nuevo.component.css']
 })
 export class NuevoComponent implements OnInit {
-  responsables: any = [
-    {value: 'Salazar Benavente Valeriano', viewValue: 'Salazar Benavente Valeriano'},
-    {value: 'Méndez Delfín José', viewValue: 'Méndez Delfín José'},
-    {value: 'Quero García Alberto', viewValue: 'Quero García Alberto'}
+  myControl = new FormControl();
+  options: User[] = [
+    {name: 'Salazar Benavente Valeriano'},
+    {name: 'Méndez Delfín José'},
+    {name: 'Quero García Alberto'}
   ];
-  responsable:String = this.responsables[0].value
+  filteredOptions: Observable<User[]>;
+  
+  minDate = new Date(2000, 0, 1);
+  maxDate = new Date(2020, 0, 1);
+  fechaEm = new Date();
+  
 
   clientes: any = [
     {value: 'Transportes Kala', viewValue: 'Transportes Kala'},
@@ -28,14 +41,37 @@ export class NuevoComponent implements OnInit {
     {value: 'Contacto 3', viewValue: 'Contacto 3'}
   ];
   contacto:String = this.contactos[0].value
-
-  fechaActual: any = Date()
   constructor(public dialog : MatDialog) { }
 
   adicional: Object
   adicionales: Array<Object> = []
 
   ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith<string | User>(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.options.slice())
+      );
+    this.myControl.valueChanges.subscribe(val=>{
+      this.existeFun(val)
+    })
+  }
+
+  displayFn(user?: User): string | undefined {
+    return user ? user.name : undefined;
+  }
+
+  existe:boolean = false
+
+  existeFun(val:User){
+    this.existe = val==null?false:!this.options.some(elem => elem.name==val.name)
+    console.log(this.existe)
+  }
+  private _filter(name: string): User[] {
+    const filterValue = name.toLowerCase();
+
+    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   openDialog() {

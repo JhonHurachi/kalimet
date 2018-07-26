@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { OrdenesProduccionComponent } from './ordenes-produccion/ordenes-produccion.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { Adicional } from './nuevo/adicional';
+import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { Adicional } from './nuevo/adicional';
     ProduccionRoutingModule,
     MaterialModule
   ],
-  declarations: [OrdenesProduccionComponent, OrdenesComponent, NuevoComponent, Adicional],
+  declarations: [OrdenesProduccionComponent, OrdenesComponent, NuevoComponent, Adicional, NuevoResponsableComponent],
   entryComponents:[
     Adicional
   ],

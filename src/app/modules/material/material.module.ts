@@ -10,9 +10,12 @@ import {
   MatInputModule,
   MatSelectModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatNativeDateModule
  } from '@angular/material'
-import { FormsModule } from '../../../../node_modules/@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
 
 @NgModule({
   imports: [
@@ -28,7 +31,11 @@ import { FormsModule } from '../../../../node_modules/@angular/forms';
     FormsModule,
     MatInputModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatToolbarModule,
@@ -42,7 +49,11 @@ import { FormsModule } from '../../../../node_modules/@angular/forms';
     FormsModule,
     MatInputModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: []
 })

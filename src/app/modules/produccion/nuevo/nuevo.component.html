@@ -21,18 +21,30 @@
         <tr>
           <td>Responsable</td>
           <td>
-            <mat-form-field>
-              <mat-select [(ngModel)]="responsable">
-                <mat-option *ngFor="let resp of responsables" [value]="resp.value">
-                  {{resp.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field class="example-full-width">
+                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{option.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <button mat-mini-fab class="boton" *ngIf="existe" [routerLink]="'../nuevoResponsable'"><mat-icon>
+                    <i class="material-icons">
+                    add
+                    </i>
+                  </mat-icon></button>
           </td>
         </tr>
         <tr>
           <td>Fecha Emisión</td>
-          <td>{{fechaActual|date: 'dd/MM/yyyy'}}</td>
+          <td>
+              <mat-form-field class="example-full-width">
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="fechaEm">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+          </td>
         </tr>
         <tr>
           <td>Referencia</td>
