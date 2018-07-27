@@ -10,6 +10,14 @@
                   </td>
                 </tr>
                 <tr>
+                    <td>Descripción</td>
+                    <td>
+                        <mat-form-field class="campo">
+                            <textarea matInput [(ngModel)]="adicional.descripcion"></textarea>
+                          </mat-form-field>
+                    </td>
+                  </tr>
+                <tr>
                     <td>Contacto</td>
                     <td>
                       <mat-form-field>
@@ -24,6 +32,6 @@
                 </table>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]=null>Cancelar</button>
   <button mat-button [mat-dialog-close]="adicional" cdkFocusInitial>Agregar</button>
 </mat-dialog-actions>

@@ -1,5 +1,5 @@
 <mat-sidenav-container style="height:100%" >
-  <mat-sidenav #sidenav mode="side" opened="true" class="lateral" [fixedInViewport]="true" style="height:100%">
+  <mat-sidenav #sidenav [mode]="modo" [opened]="abierto" class="lateral" [fixedInViewport]="true" style="height:100%">
       <div
         fxLayout="column"
         fxLayoutGap = "0"
@@ -12,7 +12,7 @@
         <div style="text-align:left; height:100%">
             <button mat-raised-button class="btnMenu" [routerLink]="'../produccion'">
               <mat-icon><i class="material-icons">attach_money</i></mat-icon>
-              Orden de Producción</button>
+              Cotización</button>
             <button mat-button class="btnMenu" [routerLink]="'../menu'">
               <mat-icon><i class="material-icons">exit_to_app</i></mat-icon>
               Salir</button>

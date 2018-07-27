@@ -4,15 +4,14 @@
   fxLayout.xs="column"
   fxLayoutAlign="center"
   fxLayoutGap="10px"
-  fxLayoutGap.xs="0">
+  fxLayoutGap.xs="10px">
   <div class=""
   fxLayout="row"
-  fxLayout.xs="row"
+  fxLayout.xs="column"
   fxLayoutAlign="center"
   fxLayoutGap="10px"
-  fxLayoutGap.xs="0">
-    <div fxFlex=20% fxFlex.xs=0%></div>
-    <div class="cabecera">
+  fxLayoutGap.xs="10px">
+    <div class="cabecera" fxFlex=30% fxFlex.xs=90%>
       <table>
         <tr>
           <td>Op.</td>
@@ -56,22 +55,13 @@
         </tr>
       </table>
     </div>
-    <div fxFlex=20% fxFlex.xs=0%></div>
-  </div>
-  <div class=""
-  fxLayout="row"
-  fxLayout.xs="row"
-  fxLayoutAlign="center"
-  fxLayoutGap="10px"
-  fxLayoutGap.xs="0">
-    <div fxFlex=10% fxFlex.xs=0%></div>
-    <div class="cabecera" fxFlex=80% fxFlex.xs=100%>
+    <div class="cabecera" fxFlex=60% fxFlex.xs=90%>
       <table  class="campo">
         <tr>
           <td>Nombre del Presupuesto</td>
           <td>
               <mat-form-field class="campo">
-                  <input matInput value="Fabricación e instalación de viguetas techo rev. técnicas">
+                  <textarea matInput value="Fabricación e instalación de viguetas techo rev. técnicas"></textarea>
                 </mat-form-field>
           </td>
         </tr>
@@ -89,19 +79,33 @@
           </tr>
         <tr>
           <td>Adicionales</td>
-          <td><button mat-raised-button (click)="openDialog()">Añadir adicional
+          <td><button mat-raised-button (click)="openDialog()" style="background-color: #69BB7B; color:white">Añadir adicional
               <mat-icon class="menu">
                   <i class="material-icons">
                   add
                   </i>
                 </mat-icon>
-          </button></td>
+          </button>
+        </td>
         </tr>
-        <tr *ngFor="let ad of adicionales">
-          <td></td>
-          <td>
-            Título: {{ad.titulo}}<br>
-            Contacto: {{ad.ref}}
+        <tr>
+          <td colspan="2">
+            <div  *ngIf = "adicionales.length>0" style="overflow:auto; height:80px; margin-top:20px">
+            <table class="tabla1">
+              <thead>
+                <th>Trabajo</th>
+                <th>Descripción</th>
+                <th>Contacto</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ad of adicionales">
+                  <td>{{ad.titulo}}</td>
+                  <td>{{ad.des}}</td>
+                  <td>{{ad.ref}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           </td>
         </tr>
         <tr>
@@ -118,6 +122,37 @@
         </tr>       
       </table>
     </div>
-    <div fxFlex=10% fxFlex.xs=0%></div>
+  </div>
+  <div class="" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
+    <div fxFlex="91%" fxFlex.xs="100%" class="cabecera">
+      <div fxLayout="row" fxLayoutGap="10px" style="margin:10px;">
+        <div class="trabajos" fxFlex="50%" fxFlex.xs="90%">Trabajos y Personal Asignado</div>
+        <div fxFlex="50%" fxFlex.xs="10%" style="text-align:right !important">
+            <button mat-mini-fab class="boton"><mat-icon>
+                <i class="material-icons">
+                add
+                </i>
+              </mat-icon></button>
+        </div>       
+      </div>
+      <div style="overflow-x:auto;">
+      <table class="tabla">
+        <thead>
+          <th>Tipo</th>
+          <th>Nro</th>
+          <th>Actividad</th>
+          <th>Trabajo</th>
+          <th>Nombres</th>
+          <th>Especialidad</th>
+          <th>H-H</th>
+          <th>HHE</th>
+          <th>H-T</th>
+          <th>HTE</th>
+          <th>Avance</th>
+        </thead>
+      </table>
+    </div>
+    </div>
   </div>
 </div>
+<br>

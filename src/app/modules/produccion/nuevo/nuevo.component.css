@@ -1,9 +1,78 @@
 .cabecera{
-    border: 2px solid red;
     border-radius:5px;
     padding: 20px;
+    box-shadow: 2px 2px 5px #999;
+    background-color: white;
+    color: #495468;
 }
 
 .campo{
     width: 100% !important;
+}
+
+.tabla {     
+    font-size: 12px;    
+    width: 100%; 
+    text-align: left;    
+    border-collapse: collapse; 
+}
+
+.tabla th {     
+    font-size: 13px;     
+    font-weight: normal;     
+    padding: 8px;     
+    background: rgb(248, 83, 89);    
+    border-bottom: 1px solid #fff; 
+    color: white; 
+}
+
+.tabla td {    
+    padding: 8px;     
+    background: #e8edff;     
+    border-bottom: 1px solid #fff;
+    color: #669;    
+    border-top: 1px solid transparent; 
+}
+
+.tabla tr:hover td { 
+    background: #d0dafd; 
+    color: #339; 
+}
+
+.tabla1 {     
+    font-size: 12px;    
+    width: 100%; 
+    text-align: left;    
+    border-collapse: collapse; 
+}
+
+.tabla1 th {     
+    font-size: 13px;     
+    font-weight: normal;     
+    padding: 8px;     
+    background: #69BB7B;    
+    border-bottom: 1px solid #fff; 
+    color: white; 
+}
+
+.tabla1 td {    
+    padding: 8px;     
+    background: #e8edff;     
+    border-bottom: 1px solid #fff;
+    color: #669;    
+    border-top: 1px solid transparent; 
+}
+
+.tabla1 tr:hover td { 
+    background: #d0dafd; 
+    color: #339; 
+}
+
+.trabajos{
+    margin: 10px;
+    text-align: left !important;
+}
+
+.boton{
+    background-color:#FAD201;
 }
