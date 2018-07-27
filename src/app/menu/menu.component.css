@@ -1,0 +1,20 @@
+.home{
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(44, 41, 40, 0.5);
+    color: white;
+}
+
+.contenedor{
+    background: url("../../assets/fondo.jpg") no-repeat center center ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+

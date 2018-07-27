@@ -1,22 +1,43 @@
-<mat-toolbar class="barra">
-  <span class="example-fill-remaining-space">Bienvenido</span>
+<mat-sidenav-container style="height:100%" >
+    <mat-sidenav #sidenav mode="side" opened="true" class="lateral" [fixedInViewport]="true" style="height:100%">
+        <div
+          fxLayout="column"
+          fxLayoutGap = "0"
+          fxLayoutGap.xs = "0"
+          fxLayoutAlign="right" style="height:100%;">
+          <div fxFlex="20%">
+            <div class="vertical"><p class="tituloMenu">Navegar</p></div>
+          </div>        
+          <hr class="linea">
+          <div style="text-align:left; height:100%">
+              <button mat-raised-button class="btnMenu" [routerLink]="'../produccion'">
+                <mat-icon><i class="material-icons">attach_money</i></mat-icon>
+                Orden de Producción</button>
+              <button mat-button class="btnMenu" [routerLink]="'../menu'">
+                <mat-icon><i class="material-icons">exit_to_app</i></mat-icon>
+                Salir</button>
+          </div>
+        </div>    
+        
+    </mat-sidenav>
+    
+    <mat-sidenav-content style="height:100%">
+        <mat-toolbar class="barra" style="height:10%">
+          <div 
+            fxLayout="row"
+            fxLayoutGap = "40px"
+            fxLayoutGap.xs = "0"
+            fxLayoutAlign="right" style="height:100%; width:100%">
+            <div fxFlex="20%" fxFlex.xs="40%" class="vertical"><img src="../../assets/kalimet.png" class="logo"/></div>
+            <div fxFlex.xs="0"></div>
+            <div fxFlex="2%" class="vertical">
+                <mat-icon (click)="sidenav.toggle()" class="menu">
+                    <i class="material-icons">menu</i>
+                  </mat-icon>
+            </div>
+          </div>         
+        </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+  </mat-sidenav-container>
   
-    <mat-icon (click)="sidenav.toggle()" class="menu">
-      <i class="material-icons">
-      menu
-      </i>
-    </mat-icon>
-  
-</mat-toolbar>
-<mat-sidenav-container >
-  <mat-sidenav #sidenav mode="side" opened="true" class="lateral" [fixedInViewport]="true">    
-      <img src="../../assets/kalimet.png" />
-      <hr class="linea">
-      <button mat-button class="btnMenu" [routerLink]="'../produccion'" style="background-color: white;
-      color: #BA1B20;">Orden de Producción</button>
-      <button mat-button class="btnMenu" [routerLink]="'../menu'">Salir</button>
-  </mat-sidenav>
-  <mat-sidenav-content fixedInViewport="true">
-  <router-outlet></router-outlet>
-</mat-sidenav-content>
-</mat-sidenav-container>

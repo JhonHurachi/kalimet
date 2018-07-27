@@ -1,14 +1,21 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 * {
     font-family: 'Roboto';
+    padding: 0;
+    margin: 0;
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
 }
 .example-fill-remaining-space {
     flex: 1 1 auto;
   }
 
 .lateral{
-  text-align: center;
-  background-color: rgb(250, 54, 61);
+  text-align: left;
+  background-color:#495468;
 }
 
 .lista{
@@ -31,17 +38,36 @@
 
 .btnMenu{
     width: 100%;
-    background-color: rgb(250, 54, 61);
+    background-color: #495468;
     color: white;
+    height: 10%;
+    text-align: left !important;
 }
 
 .btnMenu:hover{
-    background-color: white;
-    color: rgb(250, 54, 61);
+    background-color: rgb(248, 83, 89);
+    color: white;
 }
 
 .linea{
     color: white;
     background-color: white;
     height: 0px;
+}
+
+.tituloMenu{
+    font-size: 200%;
+}
+
+.vertical{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.logo{
+    max-width: 100%;
+    height: auto;
 }
