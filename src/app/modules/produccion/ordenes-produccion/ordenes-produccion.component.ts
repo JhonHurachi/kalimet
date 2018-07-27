@@ -9,7 +9,7 @@ export class OrdenesProduccionComponent implements OnInit {
 
   constructor() { }
 
-  modo:String=screen.width<=1024?"push":"side"
+  modo:String=screen.width<=1024?"over":"side"
   abierto: boolean=screen.width<=1024?false:true
 
   ngOnInit() {
