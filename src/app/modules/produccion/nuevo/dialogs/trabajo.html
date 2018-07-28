@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Trabajo</h2>
+<mat-dialog-content>
+        <table  class="campo">
+                <tr>
+                  <td>Tipo</td>
+                  <td>
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="adicional.contacto">
+                          <mat-option *ngFor="let contact of contactos" [value]="contact.value">
+                            {{contact.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                    <td>Actividad</td>
+                    <td>
+                          <p>1</p>
+                    </td>
+                  </tr>
+                <tr>
+                    <td>Descripción</td>
+                    <td>
+                        <mat-form-field class="campo">
+                            <textarea matInput [(ngModel)]="adicional.descripcion"></textarea>
+                          </mat-form-field>
+                    </td>
+                  </tr>
+                <tr>
+                    <td>Trabajo</td>
+                    <td>
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="adicional.contacto">
+                          <mat-option *ngFor="let contact of contactos" [value]="contact.value">
+                            {{contact.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="adicional.contacto">
+                          <mat-option *ngFor="let contact of contactos" [value]="contact.value">
+                            {{contact.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]=null class="cancelar">Cancelar</button>
+  <button mat-button [mat-dialog-close]="adicional" cdkFocusInitial class="aceptar">Agregar</button>
+</mat-dialog-actions>

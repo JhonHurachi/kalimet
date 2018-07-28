@@ -11,8 +11,8 @@
   fxLayoutAlign="center"
   fxLayoutGap="10px"
   fxLayoutGap.xs="10px">
-    <div class="cabecera" fxFlex=30% fxFlex.xs=90%>
-      <table>
+    <div class="cabecera" fxFlex=30% fxFlex.xs=100%>
+      <table class="campo">
         <tr>
           <td>Op.</td>
           <td>2568</td>
@@ -20,42 +20,42 @@
         <tr>
           <td>Responsable</td>
           <td>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="campo">
                   <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                  <button mat-mini-fab class="boton" *ngIf="existe" [routerLink]="'../nuevoResponsable'" matSuffix><mat-icon>
+                    <i class="material-icons">
+                    add
+                    </i>
+                  </mat-icon></button>
                   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                       {{option.name}}
                     </mat-option>
                   </mat-autocomplete>
-                </mat-form-field>
-                <button mat-mini-fab class="boton" *ngIf="existe" [routerLink]="'../nuevoResponsable'"><mat-icon>
-                    <i class="material-icons">
-                    add
-                    </i>
-                  </mat-icon></button>
+                </mat-form-field>                
           </td>
         </tr>
         <tr>
           <td>Fecha Emisión</td>
           <td>
-              <mat-form-field class="example-full-width">
-                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="fechaEm">
+              <mat-form-field class="campo">
+                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="fechaEm" style="text-align:center !important">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-datepicker #picker ></mat-datepicker>
                 </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>Referencia</td>
           <td>
-              <mat-form-field class="">
+              <mat-form-field class="campo">
                   <input matInput>
                 </mat-form-field>
           </td>
         </tr>
       </table>
     </div>
-    <div class="cabecera" fxFlex=60% fxFlex.xs=90%>
+    <div class="cabecera" fxFlex=60% fxFlex.xs=100%>
       <table  class="campo">
         <tr>
           <td>Nombre del Presupuesto</td>
@@ -128,7 +128,7 @@
       <div fxLayout="row" fxLayoutGap="10px" style="margin:10px;">
         <div class="trabajos" fxFlex="50%" fxFlex.xs="90%">Trabajos y Personal Asignado</div>
         <div fxFlex="50%" fxFlex.xs="10%" style="text-align:right !important">
-            <button mat-mini-fab class="boton"><mat-icon>
+            <button mat-mini-fab class="boton" (click)="openTrabajo()"><mat-icon>
                 <i class="material-icons">
                 add
                 </i>

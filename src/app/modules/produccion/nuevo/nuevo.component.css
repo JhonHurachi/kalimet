@@ -76,3 +76,17 @@
 .boton{
     background-color:#FAD201;
 }
+
+.mat-mini-fab {
+    min-width: 1%;
+}
+
+.aceptar{
+    background-color:#69BB7B;
+    color: white;
+}
+
+.cancelar{
+    background-color:rgb(248, 83, 89);
+    color: white;
+}

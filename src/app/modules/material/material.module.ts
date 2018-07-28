@@ -1,3 +1,4 @@
+import { DateFormat } from './../../formatos/date-format';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -13,7 +14,8 @@ import {
   MatDialogModule,
   MatAutocompleteModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  DateAdapter
  } from '@angular/material'
 import { FormsModule, ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
 
@@ -37,6 +39,9 @@ import { FormsModule, ReactiveFormsModule } from '../../../../node_modules/@angu
     MatDatepickerModule,
     MatNativeDateModule
   ],
+  providers:[
+    {provide: DateAdapter, useClass:DateFormat},
+  ],
   exports: [
     MatToolbarModule,
     MatSidenavModule,
@@ -57,4 +62,8 @@ import { FormsModule, ReactiveFormsModule } from '../../../../node_modules/@angu
   ],
   declarations: []
 })
-export class MaterialModule { }
+export class MaterialModule {
+  constructor(private dateAdapter:DateAdapter<Date>){
+    dateAdapter.setLocale('es')
+  }
+ }

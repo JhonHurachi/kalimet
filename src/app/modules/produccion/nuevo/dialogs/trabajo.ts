@@ -1,12 +1,12 @@
 import { Component} from '@angular/core';
 
 @Component({
-    selector: 'adicional',
-    templateUrl: 'adicional.html',
-    styleUrls: ['./nuevo.component.css'],
+    selector: 'trabajo',
+    templateUrl: 'trabajo.html',
+    styleUrls: ['../nuevo.component.css'],
   })
 
-  export class Adicional {
+  export class Trabajo {
     constructor(){}  
     contactos: any = [
         {value: 'Contacto 1', viewValue: 'Contacto 1'},

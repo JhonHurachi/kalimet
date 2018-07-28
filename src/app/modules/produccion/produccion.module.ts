@@ -1,11 +1,12 @@
+import { Trabajo } from './nuevo/dialogs/trabajo';
 import { OrdenesComponent } from './ordenes/ordenes.component';
-import { MaterialModule } from './../material/material.module';
+import { MaterialModule } from '../material/material.module';
 import { ProduccionRoutingModule } from './produccion-routing-module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrdenesProduccionComponent } from './ordenes-produccion/ordenes-produccion.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
-import { Adicional } from './nuevo/adicional';
+import { Adicional } from './nuevo/dialogs/adicional';
 import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable.component';
 
 @NgModule({
@@ -14,9 +15,10 @@ import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable
     ProduccionRoutingModule,
     MaterialModule
   ],
-  declarations: [OrdenesProduccionComponent, OrdenesComponent, NuevoComponent, Adicional, NuevoResponsableComponent],
+  declarations: [OrdenesProduccionComponent, OrdenesComponent, NuevoComponent, Adicional, Trabajo, NuevoResponsableComponent],
   entryComponents:[
-    Adicional
+    Adicional,
+    Trabajo
   ],
 })
 export class ProduccionModule { }
