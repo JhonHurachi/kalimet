@@ -82,7 +82,7 @@ export class NuevoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {     
       if(result!=null){
-        this.adicional = {titulo:result.nombre, des:result.descripcion, ref:result.contacto}
+        this.adicional = {nro:`ADD${this.adicionales.length+1}`,titulo:result.nombre, des:result.descripcion, ref:result.contacto}
         this.adicionales.push(this.adicional)
       }
     });

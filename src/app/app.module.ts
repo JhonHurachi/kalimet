@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CotizacionModule } from './modules/cotizacion/cotizacion.module';
 import { MenuComponent } from './menu/menu.component';
 import { MaterialModule } from './modules/material/material.module';
 
@@ -16,7 +15,6 @@ import { MaterialModule } from './modules/material/material.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CotizacionModule,
     MaterialModule,
     BrowserAnimationsModule
   ],

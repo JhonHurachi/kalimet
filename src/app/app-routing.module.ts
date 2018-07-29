@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: './modules/produccion/produccion.module#ProduccionModule'
   },
   {
+    path: 'mantenimientos',
+    loadChildren: './modules/mantenimiento/mantenimiento.module#MantenimientoModule'
+  },
+  {
     path: '',
     redirectTo: 'menu',
     pathMatch: 'full'

@@ -1,3 +1,4 @@
+import { EmpresasComponent } from './../mantenimiento/empresas/empresas.component';
 import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { OrdenesProduccionComponent } from './ordenes-produccion/ordenes-produccion.component';

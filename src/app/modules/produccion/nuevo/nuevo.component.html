@@ -20,7 +20,7 @@
         <tr>
           <td>Responsable</td>
           <td>
-              <mat-form-field class="campo">
+              <mat-form-field>
                   <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
                   <button mat-mini-fab class="boton" *ngIf="existe" [routerLink]="'../nuevoResponsable'" matSuffix><mat-icon>
                     <i class="material-icons">
@@ -38,7 +38,7 @@
         <tr>
           <td>Fecha Emisión</td>
           <td>
-              <mat-form-field class="campo">
+              <mat-form-field>
                   <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="fechaEm" style="text-align:center !important">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker ></mat-datepicker>
@@ -48,9 +48,21 @@
         <tr>
           <td>Referencia</td>
           <td>
-              <mat-form-field class="campo">
+              <mat-form-field>
                   <input matInput>
                 </mat-form-field>
+          </td>
+        </tr>        
+        <tr>
+          <td>Cliente</td>
+          <td>
+            <mat-form-field>
+              <mat-select [(ngModel)]="cliente">
+                <mat-option *ngFor="let cli of clientes" [value]="cli.value">
+                  {{cli.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </td>
         </tr>
       </table>
@@ -90,7 +102,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <div  *ngIf = "adicionales.length>0" style="overflow:auto; height:80px; margin-top:20px">
+            <div  *ngIf = "adicionales.length>0" style="overflow:auto; height:120px; margin-top:20px">
             <table class="tabla1">
               <thead>
                 <th>Trabajo</th>
@@ -99,25 +111,13 @@
               </thead>
               <tbody>
                 <tr *ngFor="let ad of adicionales">
-                  <td>{{ad.titulo}}</td>
+                  <td>{{ad.nro}}</td>
                   <td>{{ad.des}}</td>
                   <td>{{ad.ref}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Cliente</td>
-          <td>
-            <mat-form-field>
-              <mat-select [(ngModel)]="cliente">
-                <mat-option *ngFor="let cli of clientes" [value]="cli.value">
-                  {{cli.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
           </td>
         </tr>       
       </table>

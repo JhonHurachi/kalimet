@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'kal-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'kal-menu-mantenimiento',
+  templateUrl: './menu-mantenimiento.component.html',
+  styleUrls: ['./menu-mantenimiento.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuMantenimientoComponent implements OnInit {
 
   constructor() { }
 

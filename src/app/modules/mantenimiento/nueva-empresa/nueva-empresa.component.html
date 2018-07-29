@@ -1,0 +1,65 @@
+<div class="cabecera" style="height:90%; text-align:center"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="10px">
+  <br>
+  <div fxFlex="20%" fxFlex.xs="0" fxFlex.md="20%"></div>
+  <div class="cabecera" fxFlex="60%" fxFlex.md="60%" fxFlex.xs="100%">
+    <div><h2>Nueva Empresa</h2></div>
+    <br>
+    <form [formGroup]="empresaForm" (ngSubmit)="addEmpresa(empresaForm.value)">
+          <table  class="campo">
+            <tr>
+              <td class="labelCampo">País</td>
+              <td>
+                  <mat-form-field class="campo">
+                      <mat-select formControlName="pais">
+                          <mat-option *ngFor="let paiss of paises" [value]="paiss.cod">
+                            {{paiss.desc}}
+                          </mat-option>
+                        </mat-select>
+                  </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCampo">RUC</td>
+              <td>
+                <mat-form-field class="campo">
+                  <input matInput placeholder="Ingresa tu ruc" formControlName="ruc">
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+                <td class="labelCampo">Razón Social</td>
+                <td>
+                  <mat-form-field class="campo">
+                    <input matInput placeholder="Ingresa tu razon social" formControlName="razonsocial">
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                  <td class="labelCampo">Tipo de Contribuyente</td>
+                  <td>
+                      <mat-form-field class="campo">
+                          <mat-select formControlName="contribuyente">
+                              <mat-option *ngFor="let tipo of tiposcon" [value]="tipo.cod">
+                                {{tipo.desc}}
+                              </mat-option>
+                            </mat-select>
+                      </mat-form-field>
+                  </td>
+                </tr>
+          </table>
+    </form>
+    <br>
+    <div class="botones">
+      <button mat-raised-button>
+        Agregar
+      </button>
+    </div>
+  </div>
+  <div fxFlex="20%" fxFlex.md="20%" fxFlex.xs="0"></div>
+</div>
+
