@@ -1,5 +1,7 @@
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '../../../../../node_modules/@angular/material';
+import { Router } from '../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'kal-nueva-empresa',
@@ -22,17 +24,28 @@ export class NuevaEmpresaComponent implements OnInit {
     {cod:"0003", desc:"Asociación en Participación"}
   ]
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private router: Router) {
     this.empresaForm = fb.group({
       'pais':[null, Validators.required],
       'ruc': [null, Validators.compose([Validators.required, Validators.pattern("^[0-9]{12}$")])],
-      'razonsocial': [],
-      'contribuyente': []
+      'razonsocial': [null, Validators.compose([Validators.required])],
+      'contribuyente': [null, Validators.required]
     })
    }
 
-  addEmpresa(post){
-    alert("empresa añadida")
+  addEmpresa(empresa){
+    this.openAddSuccess("Empresa añadida", "Aceptar")
+    this.mostrarEmpresas()
+  }
+
+  openAddSuccess(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  mostrarEmpresas(){
+    this.router.navigate(["mantenimientos/empresas/lista"]);
   }
 
   tipoEmpresa = new FormControl();

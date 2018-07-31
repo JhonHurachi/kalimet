@@ -13,6 +13,33 @@
       Añadir
     </button>
   </div>
+  <div>
+    <table class="tabla">
+      <thead>
+        <th>Código</th>
+        <th>País</th>
+        <th>Ruc</th>
+        <th>Razón social</th>
+        <th>Acciones</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas">
+          <td>{{empresa.cod_emp_cli}}</td>
+          <td>{{empresa.pais_emp_cli}}</td>
+          <td>{{empresa.ruc_emp_cli}}</td>
+          <td>{{empresa.raz_soc_emp_cli}}</td>
+          <td>
+            <button mat-icon-button>
+              <mat-icon aria-label="Eliminar elemento">delete</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon aria-label="Editar">edit</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 

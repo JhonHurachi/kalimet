@@ -21,6 +21,9 @@
                           </mat-option>
                         </mat-select>
                   </mat-form-field>
+                  <div class="alerta" *ngIf="!empresaForm.controls['pais'].valid&&empresaForm.controls['pais'].touched">
+                    Seleccione un país
+                  </div>
               </td>
             </tr>
             <tr>
@@ -29,6 +32,9 @@
                 <mat-form-field class="campo">
                   <input matInput placeholder="Ingresa tu ruc" formControlName="ruc">
                 </mat-form-field>
+                <div class="alerta" *ngIf="!empresaForm.controls['ruc'].valid&&empresaForm.controls['ruc'].touched">
+                    Escriba el ruc correctamente
+                  </div>
               </td>
             </tr>
             <tr>
@@ -37,6 +43,9 @@
                   <mat-form-field class="campo">
                     <input matInput placeholder="Ingresa tu razon social" formControlName="razonsocial">
                   </mat-form-field>
+                  <div class="alerta" *ngIf="!empresaForm.controls['razonsocial'].valid&&empresaForm.controls['razonsocial'].touched">
+                      Ingrese una razón social válida
+                    </div>
                 </td>
               </tr>
               <tr>
@@ -49,16 +58,21 @@
                               </mat-option>
                             </mat-select>
                       </mat-form-field>
+                      <div class="alerta" *ngIf="!empresaForm.controls['contribuyente'].valid&&empresaForm.controls['contribuyente'].touched">
+                          Seleccione un tipo de contribuyente
+                        </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                      <button mat-raised-button type="submit" [disabled]="!empresaForm.valid">
+                          Agregar
+                        </button>
                   </td>
                 </tr>
           </table>
-    </form>
-    <br>
-    <div class="botones">
-      <button mat-raised-button>
-        Agregar
-      </button>
-    </div>
+          <br>              
+    </form>       
   </div>
   <div fxFlex="20%" fxFlex.md="20%" fxFlex.xs="0"></div>
 </div>

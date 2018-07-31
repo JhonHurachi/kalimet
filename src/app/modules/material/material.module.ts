@@ -1,4 +1,4 @@
-import { DateFormat } from './../../formatos/date-format';
+import { DateFormat } from '../../formatos/date-format';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -15,9 +15,11 @@ import {
   MatAutocompleteModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  DateAdapter
+  DateAdapter,
+  MatProgressSpinnerModule,
+  MatSnackBarModule
  } from '@angular/material'
-import { FormsModule, ReactiveFormsModule } from '../../../../node_modules/@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { FormsModule, ReactiveFormsModule } from '../../../../node_modules/@angu
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers:[
     {provide: DateAdapter, useClass:DateFormat},
@@ -58,7 +62,9 @@ import { FormsModule, ReactiveFormsModule } from '../../../../node_modules/@angu
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   declarations: []
 })
