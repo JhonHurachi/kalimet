@@ -37,7 +37,7 @@ control.empresa = async(req,res)=>{
 
 control.agregarEmpresa = async(req, res)=>{
     try{
-        let con = await client.query('select * from usp_create_empresa_cli($1, $2, $3)',[req.body.pais, req.body.ruc, req.body.raz])
+        let con = await client.query('select * from usp_create_empresa_cli($1, $2, $3, $4)',[req.body.pais, req.body.ruc, req.body.raz, req.body.contribuyente])
         res.status(200).send({Msg:'Inserción exitosa'});
     }
     catch(error){
@@ -47,7 +47,7 @@ control.agregarEmpresa = async(req, res)=>{
 
 control.actualizarEmpresa = async(req, res)=>{
     try{
-        let con = await client.query('select * from usp_actualizar_empresa_cli($1, $2, $3)',[req.body.pais, req.body.ruc, req.body.raz])
+        let con = await client.query('select * from usp_actualizar_empresa_cli($1, $2, $3, $4, $5)',[req.body.id, req.body.pais, req.body.ruc, req.body.raz, req.body.contribuyente])
         res.status(200).send({Msg:'Actualización exitosa'});
     }
     catch(error){

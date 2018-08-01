@@ -41,9 +41,9 @@
                 <td class="labelCampo">Razón Social</td>
                 <td>
                   <mat-form-field class="campo">
-                    <input matInput placeholder="Ingresa tu razon social" formControlName="razonsocial">
+                    <input matInput placeholder="Ingresa tu razon social" formControlName="raz">
                   </mat-form-field>
-                  <div class="alerta" *ngIf="!empresaForm.controls['razonsocial'].valid&&empresaForm.controls['razonsocial'].touched">
+                  <div class="alerta" *ngIf="!empresaForm.controls['raz'].valid&&empresaForm.controls['raz'].touched">
                       Ingrese una razón social válida
                     </div>
                 </td>
@@ -67,7 +67,7 @@
                   <td colspan="2">
                       <button mat-raised-button type="submit" [disabled]="!empresaForm.valid">
                           Agregar
-                        </button>
+                      </button>
                   </td>
                 </tr>
           </table>

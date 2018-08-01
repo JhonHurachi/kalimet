@@ -10,6 +10,10 @@ export class EmpresasService {
   constructor(private http : HttpClient) { }
 
   public getEmpresas():Observable<any>{
-    return this.http.get('https://kalimet.herokuapp.com/api/empresas/lista');
+    return this.http.get('http://localhost:3000/api/empresas/lista');
+  }
+
+  public setEmpresa(body:any, cabecera:any):Observable<any>{
+    return this.http.post('http://localhost:3000/api/empresas/agregarEmpresa', body, cabecera);
   }
 }
