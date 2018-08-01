@@ -12,24 +12,27 @@
   fxLayoutGap="10px"
   fxLayoutGap.xs="10px">
     <div class="cabecera" fxFlex=30% fxFlex.xs=100%>
+      <form [formGroup]="produccionForm" (ngSubmit)="addOrden(produccionForm.value)">
       <table class="campo">
         <tr>
           <td>Op.</td>
-          <td>2568</td>
+          <mat-form-field>
+            <input type="text" matInput formControlName="operacion" disabled>
+          </mat-form-field>          
         </tr>
         <tr>
           <td>Responsable</td>
           <td>
               <mat-form-field>
-                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                  <button mat-mini-fab class="boton" *ngIf="existe" [routerLink]="'../nuevoResponsable'" matSuffix><mat-icon>
+                  <input type="text" matInput formControlName="responsable" [matAutocomplete]="auto">
+                  <button mat-icon-button *ngIf="existeResp" [routerLink]="'../nuevoResponsable'" matSuffix><mat-icon>
                     <i class="material-icons">
                     add
-                    </i>
+                    </i>  
                   </mat-icon></button>
                   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                      {{option.name}}
+                      {{option.nombre_trab}}
                     </mat-option>
                   </mat-autocomplete>
                 </mat-form-field>                
@@ -39,7 +42,7 @@
           <td>Fecha Emisión</td>
           <td>
               <mat-form-field>
-                  <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="fechaEm" style="text-align:center !important">
+                  <input matInput formControlName="fecha" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" style="text-align:center !important">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker ></mat-datepicker>
                 </mat-form-field>
@@ -49,23 +52,30 @@
           <td>Referencia</td>
           <td>
               <mat-form-field>
-                  <input matInput>
+                  <input matInput formControlName="referencia">
                 </mat-form-field>
           </td>
         </tr>        
         <tr>
           <td>Cliente</td>
           <td>
-            <mat-form-field>
-              <mat-select [(ngModel)]="cliente">
-                <mat-option *ngFor="let cli of clientes" [value]="cli.value">
-                  {{cli.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field>
+                  <input type="text" matInput formControlName="cliente" [matAutocomplete]="auto1">
+                  <button mat-icon-button *ngIf="existeCli" [routerLink]="'../../mantenimientos/empresas/nuevo'" matSuffix><mat-icon>
+                    <i class="material-icons">
+                    add
+                    </i>  
+                  </mat-icon></button>
+                  <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFnCli">
+                    <mat-option *ngFor="let cliente of filteredOptionsCli | async" [value]="cliente">
+                      {{cliente.raz_soc_emp_cli}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>                
           </td>
         </tr>
       </table>
+    </form>
     </div>
     <div class="cabecera" fxFlex=60% fxFlex.xs=100%>
       <table  class="campo">

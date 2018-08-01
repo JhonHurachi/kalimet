@@ -5,6 +5,8 @@ import { MenuMantenimientoComponent } from './menu-mantenimiento/menu-mantenimie
 import { EmpresasComponent } from './empresas/empresas.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { VerTrabajadoresComponent } from './trabajadores/ver-trabajadores/ver-trabajadores.component';
+import { TrabajadoresComponent } from './trabajadores/trabajadores/trabajadores.component';
 
 const routes: Routes = [
   {
@@ -20,7 +22,7 @@ const routes: Routes = [
                   component: NuevaEmpresaComponent
                 },
                 {
-                  path: "actualizar",
+                  path: "actualizar/:id",
                   component: ActualizarEmpresaComponent
                 },
                 {
@@ -28,6 +30,16 @@ const routes: Routes = [
                   component: VerEmpresasComponent
                 }
               ]
+          },
+          {
+            path:"trabajadores",
+            component: TrabajadoresComponent,
+            children:[
+              {
+                path:"lista",
+                component: VerTrabajadoresComponent
+              }
+            ]
           }
       ]
   }

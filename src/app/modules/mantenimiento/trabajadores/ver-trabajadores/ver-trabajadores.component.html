@@ -4,7 +4,7 @@
   fxLayoutAlign="center"
   fxLayoutGap="10px"
   fxLayoutGap.xs="10px">
-  <div><h2>Empresas</h2></div>
+  <div><h2>Trabajadores</h2></div>
   <div>
     <button mat-raised-button [routerLink]="'../nuevo'">
       <mat-icon>
@@ -13,26 +13,30 @@
       Añadir
     </button>
   </div>
-  <div style="overflow-x:auto;" *ngIf="empresas.length>0">
+  <div style="overflow-x:auto;" *ngIf="trabajadores.length>0">
     <table class="tabla">
       <thead>
-        <th>País</th>
-        <th>Ruc</th>
-        <th>Razón social</th>
-        <th>Tipo de contribuyente</th>
+        <th>Nombre</th>
+        <th>Tipo Doc</th>
+        <th>Nro Doc</th>
+        <th>Telf</th>
+        <th>Email</th>
+        <th>Cargo</th>
         <th>Acciones</th>
       </thead>
       <tbody>
-        <tr *ngFor="let empresa of empresas">
-          <td>{{empresa.pais_emp_cli}}</td>
-          <td>{{empresa.ruc_emp_cli}}</td>
-          <td>{{empresa.raz_soc_emp_cli}}</td>
-          <td>{{empresa.tipo_contribuyente_cli}}</td>
+        <tr *ngFor="let trab of trabajadores">
+          <td>{{trab.nombre_trab}}</td>
+          <td>{{trab.tipo_doc}}</td>
+          <td>{{trab.num_doc}}</td>
+          <td>{{trab.tel_trab}}</td>
+          <td>{{trab.mail_trab}}</td>
+          <td>{{trab.cargo_trab}}</td>
           <td>
-            <button mat-icon-button (click)="eliminarEmpresa(empresa.cod_emp_cli)">
+            <button mat-icon-button (click)="eliminarTrabajador(trab.id_trab)">
               <mat-icon aria-label="Eliminar elemento">delete</mat-icon>
             </button>
-            <button mat-icon-button [routerLink]="['../actualizar',empresa.cod_emp_cli]">
+            <button mat-icon-button [routerLink]="['../actualizar',trab.id_trab]">
                 <mat-icon aria-label="Editar">edit</mat-icon>
             </button>
           </td>

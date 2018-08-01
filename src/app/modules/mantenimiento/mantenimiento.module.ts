@@ -10,6 +10,8 @@ import { NuevaEmpresaComponent } from './nueva-empresa/nueva-empresa.component';
 import { ActualizarEmpresaComponent } from './actualizar-empresa/actualizar-empresa.component';
 import { VerEmpresasComponent } from './ver-empresas/ver-empresas.component';
 import { HttpClientModule } from '../../../../node_modules/@angular/common/http';
+import { VerTrabajadoresComponent } from './trabajadores/ver-trabajadores/ver-trabajadores.component';
+import { TrabajadoresComponent } from './trabajadores/trabajadores/trabajadores.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,10 @@ import { HttpClientModule } from '../../../../node_modules/@angular/common/http'
     EmpresasComponent, 
     MenuMantenimientoComponent, 
     NuevaEmpresaComponent, 
-    ActualizarEmpresaComponent, VerEmpresasComponent
+    ActualizarEmpresaComponent, 
+    VerEmpresasComponent,
+    VerTrabajadoresComponent,
+    TrabajadoresComponent
   ],
   providers:[
     EmpresasService

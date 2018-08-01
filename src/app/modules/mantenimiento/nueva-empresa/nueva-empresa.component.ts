@@ -1,3 +1,4 @@
+import { UtilsService } from './../../../servicios/utils.service';
 import { EmpresasService } from './../../../servicios/empresas.service';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -13,20 +14,19 @@ export class NuevaEmpresaComponent implements OnInit {
 
   empresaForm: FormGroup
   post: any
-  paises: any = [
-    {cod:1, desc:"Perú"},
-    {cod:3, desc:"Argentina"},
-    {cod:3, desc:"Chile"}
-  ]
+  paises: Array<any>
+  tiposcon: Array<any>  
+  tipoEmpresa = new FormControl();
 
-  tiposcon: any = [
-    {cod:1, desc:"Sociedad Civil"},
-    {cod:2, desc:"Sociedad Irregular"},
-    {cod:3, desc:"Asociación en Participación"}
-  ]
+  constructor(
+    private fb: FormBuilder, 
+    private snackBar: MatSnackBar, 
+    private router: Router, 
+    private empresasService:EmpresasService,
+    private utilsService:UtilsService
+  ) {
 
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private router: Router, private empresasService:EmpresasService) {
-    this.empresaForm = fb.group({
+    this.empresaForm = this.fb.group({
       'pais':[null, Validators.required],
       'ruc': [null, Validators.compose([Validators.required, Validators.pattern("^[0-9]{11}$")])],
       'raz': [null, Validators.compose([Validators.required])],
@@ -34,17 +34,7 @@ export class NuevaEmpresaComponent implements OnInit {
     })
    }
 
-  empresa():Object{
-    return {
-      pais: this.empresaForm.get('pais'),
-      ruc:this.empresaForm.get('ruc'),
-      raz:this.empresaForm.get('razonSocial'),
-      contribuyente: this.empresaForm.get('contribuyente')
-    }
-  }
-
   addEmpresa(empresa){
-    console.log(empresa)
     let headers = {
       'Content-Type': 'application/json'
     }
@@ -69,10 +59,20 @@ export class NuevaEmpresaComponent implements OnInit {
     this.router.navigate(["mantenimientos/empresas/lista"]);
   }
 
-  tipoEmpresa = new FormControl();
-
-
   ngOnInit() {
+    this.utilsService.getPaises()
+      .subscribe(
+        (data)=>{
+          this.paises= data;
+        }
+      );
+
+    this.utilsService.getContribuyentes()
+    .subscribe(
+      (data)=>{
+        this.tiposcon= data;
+      }
+    );
   }
 
 }

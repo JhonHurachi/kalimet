@@ -20,6 +20,10 @@
                 <mat-icon><i class="material-icons">store_mall_directory</i></mat-icon>
                 Empresas
             </button>
+            <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/trabajadores/lista'">
+              <mat-icon><i class="material-icons">people</i></mat-icon>
+              Trabajadores
+          </button>
             <button mat-raised-button class="btnMenu" (click)="verVentas()">
               <mat-icon><i class="material-icons">shop</i></mat-icon>
               Ventas<mat-icon class="icon-down"><i class="material-icons">keyboard_arrow_down</i></mat-icon></button>

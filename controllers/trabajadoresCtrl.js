@@ -7,15 +7,29 @@ let control = [];
 
 client.connect();
 
-control.lista = async(req,res)=>{
-    let empresas = []
+control.trabajadoresNomId = async(req,res)=>{
+    let trabajadores= []
     try{
         
-        let cons = await client.query("select * from usp_listar_empresa_cli()");
+        let cons = await client.query("select * from usp_listar_trabajadores()");
         cons.rows.forEach(row=>{
-            empresas.push(row)
+            trabajadores.push(row)
         });
-        res.status(200).send(empresas)   
+        res.status(200).send(trabajadores)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
+control.trabajadoresLista = async(req,res)=>{
+    let trabajadores= []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_trabajadores_todos()");
+        cons.rows.forEach(row=>{
+            trabajadores.push(row)
+        });
+        res.status(200).send(trabajadores)   
         }
     catch(error){
         res.status(404).send({Msg:error});
@@ -55,9 +69,9 @@ control.actualizarEmpresa = async(req, res)=>{
     }
 }
 
-control.eliminarEmpresa = async(req, res)=>{
+control.eliminarTrabajador = async(req, res)=>{
     try{
-        let con = await client.query('select * from usp_eliminar_empresa_cli($1)',[req.params.id])
+        let con = await client.query('select * from usp_eliminar_trabajador($1)',[req.params.id])
         res.status(200).send({Msg:'Eliminación exitosa'});
     }
     catch(error){

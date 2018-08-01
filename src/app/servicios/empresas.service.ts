@@ -1,19 +1,34 @@
+import { DbService } from './config/db.service';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresasService {
 
-  constructor(private http : HttpClient) { }
+  url:String = this.db.getUrl();
+
+  constructor(private http : HttpClient, private db: DbService) { }
 
   public getEmpresas():Observable<any>{
-    return this.http.get('https://kalimet.herokuapp.com/api/empresas/lista');
+    return this.http.get(`${this.url}empresas/lista`);
+  }
+
+  public getEmpresa(id:String):Observable<any>{
+    return this.http.get(`${this.url}empresas/empresa/${id}`);
   }
 
   public setEmpresa(body:any, cabecera:any):Observable<any>{
-    return this.http.post('https://kalimet.herokuapp.com/api/empresas/agregarEmpresa', body, cabecera);
+    return this.http.post(`${this.url}empresas/agregarEmpresa`, body, cabecera);
+  }
+
+  public updateEmpresa(body:any, cabecera:any):Observable<any>{
+    return this.http.put(`${this.url}empresas/actualizarEmpresa`, body, cabecera);
+  }
+
+  public deleteEmpresa(id:any, cabecera:any):Observable<any>{
+    return this.http.delete(`${this.url}empresas/eliminarEmpresa/${id}`, cabecera);
   }
 }

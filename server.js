@@ -7,6 +7,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const db = require('./config/dbconfig');
 const Empresasrouter = require('./routes/empresasRt');
+const Trabajadoresrouter = require('./routes/trabajadoresRt');
+const Utilsrouter = require('./routes/utilsRt');
 const pg = require('pg');
 
 //Middlewares
@@ -25,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'dist/kalimet')));
 
 //routes
 app.use(Empresasrouter);
+app.use(Utilsrouter);
+app.use(Trabajadoresrouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/dist/kalimet/index.html'));

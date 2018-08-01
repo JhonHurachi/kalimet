@@ -16,8 +16,8 @@
               <td>
                   <mat-form-field class="campo">
                       <mat-select formControlName="pais">
-                          <mat-option *ngFor="let paiss of paises" [value]="paiss.cod">
-                            {{paiss.desc}}
+                          <mat-option *ngFor="let paiss of paises" [value]="paiss.cod_pais">
+                            {{paiss.desc_pais}}
                           </mat-option>
                         </mat-select>
                   </mat-form-field>
@@ -53,8 +53,8 @@
                   <td>
                       <mat-form-field class="campo">
                           <mat-select formControlName="contribuyente">
-                              <mat-option *ngFor="let tipo of tiposcon" [value]="tipo.cod">
-                                {{tipo.desc}}
+                              <mat-option *ngFor="let tipo of tiposcon" [value]="tipo.cod_contr">
+                                {{tipo.desc_contr}}
                               </mat-option>
                             </mat-select>
                       </mat-form-field>
