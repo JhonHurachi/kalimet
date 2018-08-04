@@ -1,0 +1,10 @@
+.l{
+    text-align: left !important;
+    width: 50%
+}
+
+.r{
+    text-align: right !important;
+    padding-left: 5%;
+    width: 50%
+}

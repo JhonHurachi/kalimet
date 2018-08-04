@@ -1,29 +1,22 @@
 <h2 mat-dialog-title>Adicional</h2>
+<form [formGroup]="adicionalForm">
 <mat-dialog-content>
         <table  class="campo">
                 <tr>
                   <td>Nombre</td>
                   <td>
                       <mat-form-field class="campo">
-                          <input matInput [(ngModel)]="adicional.nombre">
+                          <input matInput formControlName="descripcion">
                         </mat-form-field>
                   </td>
                 </tr>
                 <tr>
-                    <td>Descripción</td>
-                    <td>
-                        <mat-form-field class="campo">
-                            <textarea matInput [(ngModel)]="adicional.descripcion"></textarea>
-                          </mat-form-field>
-                    </td>
-                  </tr>
-                <tr>
                     <td>Contacto</td>
                     <td>
                       <mat-form-field>
-                        <mat-select [(ngModel)]="adicional.contacto">
-                          <mat-option *ngFor="let contact of contactos" [value]="contact.value">
-                            {{contact.viewValue}}
+                        <mat-select formControlName="contacto">
+                          <mat-option *ngFor="let contact of contactos" [value]="contact.vcod_contac">
+                            {{contact.vnom_contact}}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
@@ -33,5 +26,6 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button [mat-dialog-close]=null class="cancelar">Cancelar</button>
-  <button mat-button [mat-dialog-close]="adicional" cdkFocusInitial class="aceptar">Agregar</button>
+  <button mat-button [mat-dialog-close]="adicionalForm.value" cdkFocusInitial class="aceptar" [disabled]="!adicionalForm.valid">Agregar</button>
 </mat-dialog-actions>
+</form>

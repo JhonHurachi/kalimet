@@ -20,4 +20,27 @@ export class UtilsService {
     return this.http.get(`${this.url}tipoContribuyentes`);
   }
 
+  public getTiposDocumento():Observable<any>{
+    return this.http.get(`${this.url}tipoDocumento`);
+  }
+
+  public getCargos():Observable<any>{
+    return this.http.get(`${this.url}cargos`);
+  }
+
+  public getContactos():Observable<any>{
+    return this.http.get(`${this.url}contactos`);
+  }
+
+  public getTrabajos():Observable<any>{
+    return this.http.get(`${this.url}trabajos`);
+  }
+
+  public getProductos():Observable<any>{
+    return this.http.get(`${this.url}productos`);
+  }
+
+  public getHabilidades():Observable<any>{
+    return this.http.get(`${this.url}habilidades`);
+  }
 }

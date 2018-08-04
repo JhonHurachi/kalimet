@@ -24,7 +24,9 @@ export class VerTrabajadoresComponent implements OnInit {
           this.openAddSuccess("Trabajador eliminado", "Aceptar")       
           this.verTrabajadores()
         },
-        (error)=>{console.log(error)}
+        (error)=>{
+          this.openAddSuccess("No se puede eliminar a este trabajador", "Aceptar") 
+        }
       )
   }
 

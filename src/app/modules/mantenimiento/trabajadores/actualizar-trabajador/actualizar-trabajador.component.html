@@ -1,0 +1,172 @@
+<div class="cabecera" style="height:90%; text-align:center"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="10px">
+  <div fxFlex="20%" fxFlex.xs="0" fxFlex.md="20%"></div>
+  <div class="cabecera, desplazamiento" fxFlex="60%" fxFlex.md="60%" fxFlex.xs="100%">
+    <div><h2>Actualizar Trabajador</h2></div>
+    <br>
+    <form [formGroup]="trabajadorForm" (ngSubmit)="updateTrabajador(trabajadorForm.value)">
+          <table  class="campo">
+            <tr>
+              <td class="labelCampo">Tipo de Documento</td>
+              <td>
+                  <mat-form-field class="campo">
+                      <mat-select formControlName="tipo_doc">
+                          <mat-option *ngFor="let doc of tipos_doc" [value]="doc.cod_tipo_doc">
+                            {{doc.desc_tipo_doc}}
+                          </mat-option>
+                        </mat-select>
+                  </mat-form-field>
+                  <div class="alerta" *ngIf="!trabajadorForm.controls['tipo_doc'].valid&&trabajadorForm.controls['tipo_doc'].touched">
+                    Seleccione un tipo de documento
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCampo">Nro de Documento</td>
+              <td>
+                <mat-form-field class="campo">
+                  <input matInput formControlName="doc">
+                </mat-form-field>
+                <div class="alerta" *ngIf="!trabajadorForm.controls['doc'].valid&&trabajadorForm.controls['doc'].touched">
+                    Escriba el número correctamente
+                  </div>
+              </td>
+            </tr>
+            <tr>
+            <tr>
+                <td class="labelCampo">Tipo de Contribuyente</td>
+                <td>
+                    <mat-form-field class="campo">
+                        <mat-select formControlName="tipo_cont">
+                            <mat-option *ngFor="let cont of tipos_cont" [value]="cont.cod_contr">
+                              {{cont.desc_contr}}
+                            </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                    <div class="alerta" *ngIf="!trabajadorForm.controls['tipo_cont'].valid&&trabajadorForm.controls['tipo_cont'].touched">
+                      Seleccione un tipo de contribuyente
+                    </div>
+                </td>
+              </tr>
+              <tr>
+              <td class="labelCampo">Fecha de Nacimiento</td>
+              <td>
+                  <mat-form-field>
+                      <input matInput formControlName="fecnac" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" style="text-align:center !important">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker ></mat-datepicker>
+                    </mat-form-field>
+                <div class="alerta" *ngIf="!trabajadorForm.controls['fecnac'].valid&&trabajadorForm.controls['fecnac'].touched">
+                    Elija una fecha correcta
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCampo">Primer Nombre</td>
+              <td>
+                <mat-form-field class="campo">
+                  <input matInput formControlName="primer_nombre">
+                </mat-form-field>
+                <div class="alerta" *ngIf="!trabajadorForm.controls['primer_nombre'].valid&&trabajadorForm.controls['primer_nombre'].touched">
+                    Ingrese el nombre correctamente
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="labelCampo">Segundo Nombre</td>
+              <td>
+                <mat-form-field class="campo">
+                  <input matInput formControlName="segundo_nombre">
+                </mat-form-field>
+                <div class="alerta" *ngIf="!trabajadorForm.controls['segundo_nombre'].valid&&trabajadorForm.controls['segundo_nombre'].touched">
+                    Ingrese el nombre correctamente
+                  </div>
+              </td>
+            </tr>
+          <tr>
+              <td class="labelCampo">Apellido Paterno</td>
+              <td>
+                <mat-form-field class="campo">
+                  <input matInput formControlName="ape_pat">
+                </mat-form-field>
+                <div class="alerta" *ngIf="!trabajadorForm.controls['ape_pat'].valid&&trabajadorForm.controls['ape_pat'].touched">
+                    Ingrese el apellido correctamente
+                  </div>
+              </td>
+            </tr>
+            <tr>
+                <td class="labelCampo">Apellido Materno</td>
+                <td>
+                  <mat-form-field class="campo">
+                    <input matInput formControlName="ape_mat">
+                  </mat-form-field>
+                  <div class="alerta" *ngIf="!trabajadorForm.controls['ape_mat'].valid&&trabajadorForm.controls['ape_mat'].touched">
+                      Ingrese el apellido correctamente
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCampo">Dirección</td>
+                <td>
+                  <mat-form-field class="campo">
+                    <input matInput formControlName="direccion">
+                  </mat-form-field>
+                  <div class="alerta" *ngIf="!trabajadorForm.controls['direccion'].valid&&trabajadorForm.controls['direccion'].touched">
+                      Ingrese la dirección correctamente
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCampo">Teléfono</td>
+                <td>
+                  <mat-form-field class="campo">
+                    <input matInput formControlName="telefono">
+                  </mat-form-field>
+                  <div class="alerta" *ngIf="!trabajadorForm.controls['telefono'].valid&&trabajadorForm.controls['telefono'].touched">
+                      Ingrese el número correctamente
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCampo">Email</td>
+                <td>
+                  <mat-form-field class="campo">
+                    <input matInput formControlName="mail">
+                  </mat-form-field>
+                  <div class="alerta" *ngIf="!trabajadorForm.controls['mail'].valid&&trabajadorForm.controls['mail'].touched">
+                      Ingrese el correo correctamente
+                  </div>
+                </td>
+            </tr>
+              <tr>
+                  <td class="labelCampo">Cargo</td>
+                  <td>
+                      <mat-form-field class="campo">
+                          <mat-select formControlName="cargo">
+                              <mat-option *ngFor="let cargo of cargos" [value]="cargo.cod_cargo_personal">
+                                {{cargo.desc_cargo_personal}}
+                              </mat-option>
+                            </mat-select>
+                      </mat-form-field>
+                      <div class="alerta" *ngIf="!trabajadorForm.controls['cargo'].valid&&trabajadorForm.controls['cargo'].touched">
+                          Seleccione un cargo
+                        </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <button mat-raised-button type="submit" [disabled]="!trabajadorForm.valid">
+                      Actualizar
+                    </button>
+                  </td>
+                </tr>
+          </table>
+          <br>              
+    </form>       
+  </div>
+  <div fxFlex="20%" fxFlex.md="20%" fxFlex.xs="0"></div>
+</div>

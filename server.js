@@ -9,6 +9,7 @@ const db = require('./config/dbconfig');
 const Empresasrouter = require('./routes/empresasRt');
 const Trabajadoresrouter = require('./routes/trabajadoresRt');
 const Utilsrouter = require('./routes/utilsRt');
+const Ordenesrouter = require('./routes/ordenesRt');
 const pg = require('pg');
 
 //Middlewares
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'dist/kalimet')));
 app.use(Empresasrouter);
 app.use(Utilsrouter);
 app.use(Trabajadoresrouter);
+app.use(Ordenesrouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/dist/kalimet/index.html'));

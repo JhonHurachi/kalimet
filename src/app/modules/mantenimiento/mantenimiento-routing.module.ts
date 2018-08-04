@@ -1,3 +1,5 @@
+import { ActualizarTrabajadorComponent } from './trabajadores/actualizar-trabajador/actualizar-trabajador.component';
+import { NuevoTrabajadorComponent } from './trabajadores/nuevo-trabajador/nuevo-trabajador.component';
 import { VerEmpresasComponent } from './ver-empresas/ver-empresas.component';
 import { ActualizarEmpresaComponent } from './actualizar-empresa/actualizar-empresa.component';
 import { NuevaEmpresaComponent } from './nueva-empresa/nueva-empresa.component';
@@ -38,6 +40,14 @@ const routes: Routes = [
               {
                 path:"lista",
                 component: VerTrabajadoresComponent
+              },
+              {
+                path: "nuevo",
+                component: NuevoTrabajadorComponent
+              },
+              {
+                path: "actualizar/:id",
+                component: ActualizarTrabajadorComponent
               }
             ]
           }

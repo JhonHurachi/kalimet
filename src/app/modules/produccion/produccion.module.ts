@@ -8,6 +8,7 @@ import { OrdenesProduccionComponent } from './ordenes-produccion/ordenes-producc
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { Adicional } from './nuevo/dialogs/adicional';
 import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable.component';
+import { CronogramaComponent } from './cronograma/cronograma.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable
     ProduccionRoutingModule,
     MaterialModule
   ],
-  declarations: [OrdenesProduccionComponent, OrdenesComponent, NuevoComponent, Adicional, Trabajo, NuevoResponsableComponent],
+  declarations: [OrdenesProduccionComponent, OrdenesComponent, NuevoComponent, Adicional, Trabajo, NuevoResponsableComponent, CronogramaComponent],
   entryComponents:[
     Adicional,
     Trabajo

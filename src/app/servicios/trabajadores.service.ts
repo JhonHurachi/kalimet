@@ -22,4 +22,13 @@ export class TrabajadoresService {
   public deleteTrabajador(id:any, cabecera:any):Observable<any>{
     return this.http.delete(`${this.url}trabajadores/eliminarTrabajador/${id}`, cabecera);
   }
+  public setTrabajador(body:any, cabecera:any):Observable<any>{
+    return this.http.post(`${this.url}trabajadores/agregarTrabajador`, body, cabecera);
+  }
+  public updateTrabajador(body:any, cabecera:any):Observable<any>{
+    return this.http.put(`${this.url}trabajadores/actualizarTrabajador`, body, cabecera);
+  }
+  public getTrabajador(id:number):Observable<any>{
+    return this.http.get(`${this.url}trabajadores/trabajador/${id}`);
+  }
 }

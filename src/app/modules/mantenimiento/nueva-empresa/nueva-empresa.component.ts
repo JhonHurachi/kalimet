@@ -15,15 +15,14 @@ export class NuevaEmpresaComponent implements OnInit {
   empresaForm: FormGroup
   post: any
   paises: Array<any>
-  tiposcon: Array<any>  
-  tipoEmpresa = new FormControl();
+  tiposcon: Array<any>
 
   constructor(
     private fb: FormBuilder, 
     private snackBar: MatSnackBar, 
     private router: Router, 
     private empresasService:EmpresasService,
-    private utilsService:UtilsService
+    private utilsService:UtilsService,
   ) {
 
     this.empresaForm = this.fb.group({

@@ -35,4 +35,88 @@ control.contribuyentes = async(req,res)=>{
         res.status(404).send({Msg:error});
     }}
 
+control.tiposDoc = async(req,res)=>{
+    let tipos = []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_tiposdoc()");
+        cons.rows.forEach(row=>{
+            tipos.push(row)
+        });
+        res.status(200).send(tipos)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
+control.cargos = async(req,res)=>{
+    let cargos = []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_cargosPersonal()");
+        cons.rows.forEach(row=>{
+            cargos.push(row)
+        });
+        res.status(200).send(cargos)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
+control.contactos = async(req,res)=>{
+    let contactos = []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_contactos()");
+        cons.rows.forEach(row=>{
+            contactos.push(row)
+        });
+        res.status(200).send(contactos)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
+control.trabajos= async(req,res)=>{
+    let trabajos = []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_trabajos()");
+        cons.rows.forEach(row=>{
+            trabajos.push(row)
+        });
+        res.status(200).send(trabajos)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
+control.productos= async(req,res)=>{
+    let productos = []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_productos()");
+        cons.rows.forEach(row=>{
+            productos.push(row)
+        }); 
+        res.status(200).send(productos)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
+control.habilidades= async(req,res)=>{
+    let habilidades = []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_habilidades()");
+        cons.rows.forEach(row=>{
+            habilidades.push(row)
+        }); 
+        res.status(200).send(habilidades)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
 module.exports = control

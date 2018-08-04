@@ -1,10 +1,10 @@
-<br>
 <div class=""
   fxLayout="column"
   fxLayout.xs="column"
   fxLayoutAlign="center"
   fxLayoutGap="10px"
-  fxLayoutGap.xs="10px">
+  fxLayoutGap.xs="10px" style="height:90%">
+  <form [formGroup]="produccionForm" (ngSubmit)="addOrden(produccionForm.value)">
   <div class=""
   fxLayout="row"
   fxLayout.xs="column"
@@ -12,20 +12,18 @@
   fxLayoutGap="10px"
   fxLayoutGap.xs="10px">
     <div class="cabecera" fxFlex=30% fxFlex.xs=100%>
-      <form [formGroup]="produccionForm" (ngSubmit)="addOrden(produccionForm.value)">
+      
       <table class="campo">
         <tr>
           <td>Op.</td>
-          <mat-form-field>
-            <input type="text" matInput formControlName="operacion" disabled>
-          </mat-form-field>          
+          <td  style="text-align:right;padding-right:15%"><h4>{{numOperacion|number:'3.0-0'}}</h4></td>         
         </tr>
         <tr>
           <td>Responsable</td>
           <td>
               <mat-form-field>
                   <input type="text" matInput formControlName="responsable" [matAutocomplete]="auto">
-                  <button mat-icon-button *ngIf="existeResp" [routerLink]="'../nuevoResponsable'" matSuffix><mat-icon>
+                  <button mat-icon-button *ngIf="existeResp" [routerLink]="'../../mantenimientos/trabajadores/nuevo'" matSuffix><mat-icon>
                     <i class="material-icons">
                     add
                     </i>  
@@ -35,7 +33,10 @@
                       {{option.nombre_trab}}
                     </mat-option>
                   </mat-autocomplete>
-                </mat-form-field>                
+                </mat-form-field> 
+                <div class="alerta" *ngIf="!produccionForm.controls['responsable'].valid&&produccionForm.controls['responsable'].touched">
+                    Ingrese un responsable
+                </div>               
           </td>
         </tr>
         <tr>
@@ -46,6 +47,9 @@
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker ></mat-datepicker>
                 </mat-form-field>
+                <div class="alerta" *ngIf="!produccionForm.controls['fecha'].valid&&produccionForm.controls['fecha'].touched">
+                    Ingrese una fecha
+                </div> 
           </td>
         </tr>
         <tr>
@@ -54,16 +58,19 @@
               <mat-form-field>
                   <input matInput formControlName="referencia">
                 </mat-form-field>
+                <div class="alerta" *ngIf="!produccionForm.controls['referencia'].valid&&produccionForm.controls['referencia'].touched">
+                    Ingrese una referencia
+                </div> 
           </td>
         </tr>        
         <tr>
           <td>Cliente</td>
           <td>
               <mat-form-field>
-                  <input type="text" matInput formControlName="cliente" [matAutocomplete]="auto1">
+                  <input type="text" matInput formControlName='cliente' [matAutocomplete]="auto1">
                   <button mat-icon-button *ngIf="existeCli" [routerLink]="'../../mantenimientos/empresas/nuevo'" matSuffix><mat-icon>
                     <i class="material-icons">
-                    add
+                      add
                     </i>  
                   </mat-icon></button>
                   <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFnCli">
@@ -71,37 +78,45 @@
                       {{cliente.raz_soc_emp_cli}}
                     </mat-option>
                   </mat-autocomplete>
-                </mat-form-field>                
+                </mat-form-field>  
+                <div class="alerta" *ngIf="!produccionForm.controls['cliente'].valid&&produccionForm.controls['cliente'].touched">
+                    Ingrese un cliente
+                </div>               
           </td>
         </tr>
       </table>
-    </form>
     </div>
     <div class="cabecera" fxFlex=60% fxFlex.xs=100%>
       <table  class="campo">
         <tr>
-          <td>Nombre del Presupuesto</td>
+          <td>Nombre del Presupuesto(TP)</td>
           <td>
               <mat-form-field class="campo">
-                  <textarea matInput value="Fabricación e instalación de viguetas techo rev. técnicas"></textarea>
+                  <textarea formControlName="opP" matInput></textarea>
                 </mat-form-field>
+                <div class="alerta" *ngIf="!produccionForm.controls['opP'].valid&&produccionForm.controls['opP'].touched">
+                    Ingrese un nombre
+                </div> 
           </td>
         </tr>
         <tr>
             <td>Contacto</td>
             <td>
               <mat-form-field>
-                <mat-select [(ngModel)]="contacto">
-                  <mat-option *ngFor="let contact of contactos" [value]="contact.value">
-                    {{contact.viewValue}}
+                <mat-select formControlName="contacto">
+                  <mat-option *ngFor="let contact of contactos" [value]="contact.vcod_contac">
+                    {{contact.vnom_contact}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+              <div class="alerta" *ngIf="!produccionForm.controls['contacto'].valid&&produccionForm.controls['contacto'].touched">
+                  Ingrese un contacto
+              </div> 
             </td>
           </tr>
         <tr>
           <td>Adicionales</td>
-          <td><button mat-raised-button (click)="openDialog()" style="background-color: #69BB7B; color:white">Añadir adicional
+          <td><button mat-raised-button type="button" (click)="openDialog()" style="background-color: #69BB7B; color:white">Añadir adicional
               <mat-icon class="menu">
                   <i class="material-icons">
                   add
@@ -131,38 +146,15 @@
           </td>
         </tr>       
       </table>
-    </div>
-  </div>
-  <div class="" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
-    <div fxFlex="91%" fxFlex.xs="100%" class="cabecera">
-      <div fxLayout="row" fxLayoutGap="10px" style="margin:10px;">
-        <div class="trabajos" fxFlex="50%" fxFlex.xs="90%">Trabajos y Personal Asignado</div>
-        <div fxFlex="50%" fxFlex.xs="10%" style="text-align:right !important">
-            <button mat-mini-fab class="boton" (click)="openTrabajo()"><mat-icon>
-                <i class="material-icons">
-                add
-                </i>
-              </mat-icon></button>
-        </div>       
+      <div  style="text-align:right">
+      <button class="barra" mat-raised-button type="submit" [disabled]="!produccionForm.valid">
+          Aceptar
+      </button>
       </div>
-      <div style="overflow-x:auto;">
-      <table class="tabla">
-        <thead>
-          <th>Tipo</th>
-          <th>Nro</th>
-          <th>Actividad</th>
-          <th>Trabajo</th>
-          <th>Nombres</th>
-          <th>Especialidad</th>
-          <th>H-H</th>
-          <th>HHE</th>
-          <th>H-T</th>
-          <th>HTE</th>
-          <th>Avance</th>
-        </thead>
-      </table>
     </div>
-    </div>
+    
   </div>
+  <div fxLayout fxGap="10px" fxGap.xs="10px" fxLayoutAlign="center">    
+  </div>  
+</form>
 </div>
-<br>

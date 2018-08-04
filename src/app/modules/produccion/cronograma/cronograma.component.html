@@ -1,0 +1,167 @@
+
+<div class="cabecera" style="height:90%; text-align:center"
+  fxLayout="column"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="10px">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="0" *ngIf="ver">
+      <div fxFlex="50%" fxFlex.xs="100%" style="width:100%">
+        <table style="width:100%">
+          <tr>
+            <td class="l"><h4>Número</h4></td>
+            <td class="r">{{orden.nro}}</td>
+          </tr>
+          <tr>
+              <td class="l"><h4>Referencia</h4></td>
+              <td class="r">{{orden.referencia}}</td>
+            </tr>
+          <tr>
+              <td class="l"><h4>Fecha</h4></td>
+              <td class="r">{{orden.fecha|date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <td class="l"><h4>Responsable</h4></td>
+                <td class="r">{{orden.responsable}}</td>
+            </tr>
+            <tr>
+                <td class="l"><h4>Cliente</h4></td>
+                <td class="r">{{orden.cliente}}</td>
+            </tr>
+        </table>
+      </div>
+      <div fxFlex="50%" fxFlex.xs="100%">
+          <table style="width:100%">
+              <tr *ngFor="let ori of origenes">
+                <td class="l"><h4>{{ori.vnom_ord}}</h4></td>
+                <td class="r">{{ori.vdesc_orden}}</td>
+              </tr>
+            </table>
+      </div>
+    </div>
+  <div style="overflow-x:auto;" *ngIf="ver; else agregar">
+    <form>
+      <table class="tabla">
+          <thead>
+            <th>Tipo</th>
+            <th>Actividad</th>
+            <th>Trabajo</th>
+            <th>Nombres</th>
+            <th>Especialidad</th>
+            <th>H-H</th>
+            <th>HHE</th>
+          </thead>
+        <tbody>
+          <tr>
+            <td>
+                <mat-form-field  style="width:40px !important">
+                    <mat-select>
+                      <mat-option *ngFor="let ori of origenes" [value]="ori.vcod_origen">
+                        {{ori.vnom_ord}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput>
+              </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <mat-select>
+                      <mat-option *ngFor="let t of trabajos" [value]="t.cod_trab">
+                        {{t.desc_trab}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <mat-form-field>
+                    <mat-select>
+                      <mat-option *ngFor="let p of productos" [value]="p.cod_prod">
+                        {{p.desc_prod}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <mat-select>
+                      <mat-option *ngFor="let trab of trabajadores" [value]="trab.id_trab">
+                        {{trab.nombre_trab}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field>
+                    <mat-select>
+                      <mat-option *ngFor="let hab of habilidades" [value]="hab.cod_hab">
+                        {{hab.desc_hab}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field style="width:40px !important">
+                    <input matInput style="width:42% !important" value="10">:
+                    <input matInput style="width:42% !important" value="10">
+                  </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field style="width:40px !important">
+                    <input matInput style="width:42% !important" value="10">:
+                    <input matInput style="width:42% !important" value="10">
+                  </mat-form-field>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+      </form>
+  </div>
+  <br>
+  <ng-template #agregar style="text-align:center !important; width:100%">
+    <div fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="10px">
+    <div fxFlex="35%" fxFlex.xs="0"></div>
+    <div fxFlex="30%" fxFlex.xs="100">
+      <table>
+        <tr>
+            <td class="l"><h4>Nro</h4></td>
+            <td class="r">{{orden.nro}}</td>
+        </tr>
+        <tr>
+            <td class="l"><h4>Referencia</h4></td>
+            <td class="r">{{orden.referencia}}</td>
+        </tr>
+        <tr>
+            <td class="l"><h4>Fecha</h4></td>
+            <td class="r">{{orden.fecha|date:'dd/MM/yyyy'}}</td>
+        </tr>
+        <tr>
+            <td class="l"><h4>Responsable</h4></td>
+            <td class="r">{{orden.responsable}}</td>
+        </tr>
+        <tr>
+            <td class="l"><h4>Cliente</h4></td>
+            <td class="r">{{orden.cliente}}</td>
+        </tr>
+      </table>
+      <br>
+      <h5>Aún no hay un cronograma asignado,<br>
+      ¡Desea asignarlo ahora?</h5>
+      <button mat-raised-button (click)="ver=!ver">
+        Agregar
+      </button>
+    </div> 
+    <div fxFlex="35%" fxFlex.xs="0"></div>
+  </div>
+  </ng-template>
+
+</div>
+
+
+
+

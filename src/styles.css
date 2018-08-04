@@ -158,6 +158,10 @@ html, body{
     border-top: 1px solid transparent; 
 }
 
+.desplazamiento{
+    overflow-x:auto;
+}
+
 @keyframes aparecer{
     from{
         opacity: 0;

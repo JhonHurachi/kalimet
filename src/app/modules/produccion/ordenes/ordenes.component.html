@@ -1,25 +1,43 @@
-<div  style="text-align:center"
-  fxLayoutAling="center"
+<div class="cabecera" style="height:90%; text-align:center"
+  fxLayout="column"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
   fxLayoutGap="10px"
-  fxLayoutGap.xs=0>
-  <div fxFlex="15%" fxFlex.xs="0%"></div>
-  <div class=""
-      fxLayout="column"
-      fxLayout.xs="column"
-      fxLayoutAlign="center"
-      fxLayoutGap="10px"
-      fxLayoutGap.xs="0"
-      fxFlex="70%" fxFlex.xs="100%">
-      <div>
-        <p>Aún no existen ordenes de producción</p>
-      </div>
-      <div>
-        <button mat-mini-fab class="boton" [routerLink]="'../nuevo'"><mat-icon>
-          <i class="material-icons">
-          add
-          </i>
-        </mat-icon></button>
-      </div>
-    </div>
-    <div fxFlex="15%" fxFlex.xs="0%"></div>
+  fxLayoutGap.xs="10px">
+  <div><h2>Ordenes de Producción</h2></div>
+  <div>
+    <button mat-raised-button [routerLink]="'../nuevo'">
+      <mat-icon>
+        <i class="material-icons">add</i>
+      </mat-icon>
+      Añadir
+    </button>
   </div>
+  <div style="overflow-x:auto;" *ngIf="ordenes.length>0">
+    <table class="tabla">
+      <thead>
+        <th>Nro</th>
+        <th>Responsable</th>
+        <th>Fecha</th>
+        <th>Referencia</th>
+        <th>Cliente</th>
+        <th>Acciones</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let orden of ordenes">
+          <td>{{orden.cod_orden}}</td>
+          <td>{{orden.resp_orden}}</td>
+          <td>{{orden.fec_orden|date:'dd/MM/yyyy'}}</td>
+          <td>{{orden.ref_orden}}</td>
+          <td>{{orden.cliente_orden}}</td>
+          <td>
+            <button mat-icon-button [routerLink]="['../orden',orden.cod_orden]">
+              <mat-icon aria-label="Ver orden">find_in_page</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

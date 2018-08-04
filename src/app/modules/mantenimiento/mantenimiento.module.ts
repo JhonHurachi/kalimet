@@ -12,6 +12,8 @@ import { VerEmpresasComponent } from './ver-empresas/ver-empresas.component';
 import { HttpClientModule } from '../../../../node_modules/@angular/common/http';
 import { VerTrabajadoresComponent } from './trabajadores/ver-trabajadores/ver-trabajadores.component';
 import { TrabajadoresComponent } from './trabajadores/trabajadores/trabajadores.component';
+import { NuevoTrabajadorComponent } from './trabajadores/nuevo-trabajador/nuevo-trabajador.component';
+import { ActualizarTrabajadorComponent } from './trabajadores/actualizar-trabajador/actualizar-trabajador.component';
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import { TrabajadoresComponent } from './trabajadores/trabajadores/trabajadores.
     ActualizarEmpresaComponent, 
     VerEmpresasComponent,
     VerTrabajadoresComponent,
-    TrabajadoresComponent
+    TrabajadoresComponent,
+    NuevoTrabajadorComponent,
+    ActualizarTrabajadorComponent
   ],
   providers:[
     EmpresasService

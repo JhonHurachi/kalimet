@@ -19,6 +19,7 @@ import {
   MatProgressSpinnerModule,
   MatSnackBarModule
  } from '@angular/material'
+ import {CalendarModule} from 'primeng/calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -41,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CalendarModule
   ],
   providers:[
     {provide: DateAdapter, useClass:DateFormat},
@@ -64,7 +66,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CalendarModule
   ],
   declarations: []
 })

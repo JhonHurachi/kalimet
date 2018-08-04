@@ -1,3 +1,4 @@
+import { CronogramaComponent } from './cronograma/cronograma.component';
 import { EmpresasComponent } from './../mantenimiento/empresas/empresas.component';
 import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
@@ -28,6 +29,10 @@ const routes: Routes = [
                 path: "nuevoResponsable",
                 component: NuevoResponsableComponent
             },
+            {
+                path:"orden/:id",
+                component:CronogramaComponent
+            }
         ]
     }
 ];

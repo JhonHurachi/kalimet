@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DbService {
   url: String = 'https://kalimet.herokuapp.com/api/'
+  //url: String = 'http://localhost:3000/api/'
 
   constructor() { }
 

@@ -35,23 +35,25 @@ control.trabajadoresLista = async(req,res)=>{
         res.status(404).send({Msg:error});
     }}
 
-control.empresa = async(req,res)=>{
-    let empresa = {}
+control.trabajador= async(req,res)=>{
+    let trabajador = {}
     try{
-        let cons = await client.query("SELECT * FROM tb_empresa_cli where cod_emp_cli=$1",[req.params.id]);
+        let cons = await client.query("SELECT * FROM tb_trabajadores where cod_trabajador=$1",[+req.params.id]);
         cons.rows.forEach(row=>{
-            console.log(row);
-            empresa = row;
+            trabajador = row;
         });
-        res.status(200).send(empresa)   
+        res.status(200).send(trabajador)   
         }
     catch(error){
         res.status(404).send({Msg:error});
     }}
 
-control.agregarEmpresa = async(req, res)=>{
+control.agregarTrabajador = async(req, res)=>{
     try{
-        let con = await client.query('select * from usp_create_empresa_cli($1, $2, $3, $4)',[req.body.pais, req.body.ruc, req.body.raz, req.body.contribuyente])
+        let con = await client.query('select * from usp_create_trabajador ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
+                [req.body.tipo_doc, req.body.tipo_cont, req.body.doc, req.body.fecnac, req.body.ape_pat,
+                req.body.ape_mat, req.body.primer_nombre, req.body.segundo_nombre, req.body.direccion,
+                req.body.telefono, req.body.mail, req.body.cargo])
         res.status(200).send({Msg:'Inserción exitosa'});
     }
     catch(error){
@@ -59,9 +61,13 @@ control.agregarEmpresa = async(req, res)=>{
     }
 }
 
-control.actualizarEmpresa = async(req, res)=>{
+control.actualizarTrabajador = async(req, res)=>{
     try{
-        let con = await client.query('select * from usp_actualizar_empresa_cli($1, $2, $3, $4, $5)',[req.body.id, req.body.pais, req.body.ruc, req.body.raz, req.body.contribuyente])
+        let con = await client.query('select * from usp_actualizar_trabajador($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)',
+        [req.body.id, req.body.tipo_doc, req.body.tipo_cont, req.body.doc, req.body.fecnac, req.body.ape_pat,
+        req.body.ape_mat, req.body.primer_nombre, req.body.segundo_nombre, req.body.direccion,
+        req.body.telefono, req.body.mail, req.body.cargo])    
+    
         res.status(200).send({Msg:'Actualización exitosa'});
     }
     catch(error){

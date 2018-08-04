@@ -1,3 +1,4 @@
+import { OrdenesService } from './../../../servicios/ordenes.service';
 import { TrabajadoresService } from './../../../servicios/trabajadores.service';
 import { Trabajo } from './dialogs/trabajo';
 import { Component, OnInit } from '@angular/core';
@@ -24,6 +25,19 @@ export interface Cliente{
   tipo_contribuyente_cli: string
 }
 
+export interface Contacto{
+  vcod_contac: number,
+  vnom_contact: string,
+  vcod_emp_contact: string
+}
+
+export interface Ad{
+  nro:string, 
+  des:string, 
+  ref:string, 
+  idC:number
+}
+
 @Component({
   selector: 'kal-nuevo',
   templateUrl: './nuevo.component.html',
@@ -41,12 +55,13 @@ export class NuevoComponent implements OnInit {
   existeCli:boolean = false
   clientes:Cliente[]
   trabajadores: Trabajador[]
-  adicional: Object
-  adicionales: Array<Object> = []  
+  adicional: Ad
+  adicionales: Array<Ad> = []  
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
+  contactos: Array<Contacto>=[]
+  numOperacion:number=1
   
-
   constructor(
     private dialog : MatDialog,
     private fb: FormBuilder, 
@@ -54,14 +69,16 @@ export class NuevoComponent implements OnInit {
     private router: Router, 
     private empresasService:EmpresasService,
     private utilsService:UtilsService,
-    private trabajadoresService:TrabajadoresService
+    private trabajadoresService:TrabajadoresService,
+    private ordenesService: OrdenesService
   ) { 
     this.produccionForm = this.fb.group({
-      'operacion': [1234, Validators.required],
       responsable: new FormControl([null, Validators.required]),
       'fecha':[new Date(), Validators.required],
-      'referencia': ['Agregar', Validators.compose([Validators.required])],
-      cliente: new FormControl([null, Validators.compose([Validators.required])])
+      'referencia': [null, Validators.compose([Validators.required])],
+      cliente: new FormControl([null, Validators.compose([Validators.required])]),
+      'opP': [null, Validators.compose([Validators.required])],
+      contacto : new FormControl([null,Validators.compose([Validators.required])])
     })
   }
 
@@ -94,19 +111,6 @@ export class NuevoComponent implements OnInit {
     const filterValue = name.toLowerCase();
     return this.clientes.filter(cliente => cliente.raz_soc_emp_cli.toLowerCase().indexOf(filterValue) === 0);
   }
-  //Fin Cliente
-
-  //DatePicker  
-  //Fin DatePicker
-
-  //Contactos
-  contactos: any = [
-    {value: 'Contacto 1', viewValue: 'Contacto 1'},
-    {value: 'Contacto 2', viewValue: 'Contacto 2'},
-    {value: 'Contacto 3', viewValue: 'Contacto 3'}
-  ];
-  contacto:String = this.contactos[0].value
-  //Fin contactos
 
   //Adicionales
   openDialog() {
@@ -116,7 +120,12 @@ export class NuevoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {     
       if(result!=null){
-        this.adicional = {nro:`ADD  ${this.adicionales.length+1}`,titulo:result.nombre, des:result.descripcion, ref:result.contacto}
+        let nombreC=""
+        for(let c of this.contactos){
+          if(c.vcod_contac==result.contacto)
+            nombreC=c.vnom_contact
+        }
+        this.adicional = {nro:`A${this.adicionales.length+1}`, des:result.descripcion, ref:nombreC, idC:result.contacto}
         this.adicionales.push(this.adicional)
       }
     });
@@ -143,7 +152,51 @@ export class NuevoComponent implements OnInit {
   //fin Cuadro
 
   addOrden(orden){
-    console.log(orden)
+    let o = {
+      responsable: orden.responsable.id_trab,
+      fecha: orden.fecha,
+      referencia: orden.referencia,
+      cliente: orden.cliente.cod_emp_cli
+    }
+
+    let principal = {
+      orden:this.numOperacion,
+      nombre:'OP',
+      descripcion:orden.opP,
+      contacto: orden.contacto
+    }
+    
+    let headers = {
+      'Content-Type': 'application/json'
+    }
+    this.ordenesService.setOrden(o,headers)
+      .subscribe(
+        (data)=>{
+        this.ordenesService.setOrigen(principal,headers)
+          .subscribe(
+            (data)=>{console.log('principal')},
+            (error)=>{console.log(error)}
+          )
+          for(let adds of this.adicionales){
+            let adicional = {
+              orden:this.numOperacion,
+              nombre:adds.nro,
+              descripcion:adds.des,
+              contacto: adds.idC
+            }
+            this.ordenesService.setOrigen(adicional,headers)
+          .subscribe(
+            (data)=>{console.log('adicional')},
+            (error)=>{console.log(error)}
+          )       
+        }
+          this.openAddSuccess('Orden añadida','Aceptar');
+          this.router.navigate(["produccion/ordenes"]);
+        },
+        (error)=>{
+          this.openAddSuccess('Error al añadir la orden','Aceptar')
+        }
+      )      
   }
 
   ngOnInit() {
@@ -165,6 +218,15 @@ export class NuevoComponent implements OnInit {
           console.log(error);
         }
       )
+    this.ordenesService.getUltimaOrden()
+      .subscribe(
+        (data)=>{
+          this.numOperacion=data.ultima+1;
+        },
+        (error)=>{
+          this.numOperacion=1;
+          console.log(error)}
+      )
     
     this.empresasService.getEmpresas()
       .subscribe(
@@ -183,6 +245,14 @@ export class NuevoComponent implements OnInit {
         (error)=>{
           console.log(error);
         }
+      )
+    
+    this.utilsService.getContactos()
+      .subscribe(
+        (data)=>{
+          this.contactos = data;
+        },
+        (error)=>{console.log(error)}
       )
   }
 }
