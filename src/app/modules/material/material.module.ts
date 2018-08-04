@@ -2,6 +2,7 @@ import { DateFormat } from '../../formatos/date-format';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import * as moment from 'moment';
 import { 
   MatToolbarModule,
   MatSidenavModule,
@@ -43,7 +44,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    CalendarModule
+    CalendarModule,
   ],
   providers:[
     {provide: DateAdapter, useClass:DateFormat},

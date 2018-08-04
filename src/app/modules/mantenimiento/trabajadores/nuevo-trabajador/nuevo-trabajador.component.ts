@@ -1,6 +1,6 @@
 import { TrabajadoresService } from './../../../../servicios/trabajadores.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '../../../../../../node_modules/@angular/material';
 import { Router } from '../../../../../../node_modules/@angular/router';
 import { UtilsService } from '../../../../servicios/utils.service';

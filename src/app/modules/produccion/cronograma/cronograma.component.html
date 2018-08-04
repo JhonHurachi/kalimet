@@ -40,7 +40,16 @@
       </div>
     </div>
   <div style="overflow-x:auto;" *ngIf="ver; else agregar">
-    <form>
+    <form [formGroup]="cronogramaForm" (ngSubmit)="addCronograma(cronogramaForm.value)">
+      <div fxLayout="row" style="text-align:left !important">
+        <div fxFlex="25%" fxFlex.xs="100">
+            <h4>Inicio Programado:</h4>
+            <input matInput type="datetime-local" [min]="ahora" formControlName="fecha">
+        </div>
+        <div fxFlex="75%" fxFlex.xs="0%"></div>
+      </div>
+      <br>
+      <div class="form-group" formGroupName="actv">
       <table class="tabla">
           <thead>
             <th>Tipo</th>
@@ -53,69 +62,88 @@
           </thead>
         <tbody>
           <tr>
-            <td>
+            <td valign="top" style="vertical-align:text-top;">
                 <mat-form-field  style="width:40px !important">
-                    <mat-select>
+                    <mat-select formControlName="tipo">
                       <mat-option *ngFor="let ori of origenes" [value]="ori.vcod_origen">
                         {{ori.vnom_ord}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
             </td>
-            <td>
+            <td valign="top" style="vertical-align:text-top;">
               <mat-form-field>
-                <input matInput>
+                <input matInput  formControlName="nombre">
               </mat-form-field>
             </td>
-            <td>
+            <td valign="top" style="vertical-align:text-top;">
                 <mat-form-field>
-                    <mat-select>
+                    <mat-select  formControlName="trabajo">
                       <mat-option *ngFor="let t of trabajos" [value]="t.cod_trab">
                         {{t.desc_trab}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                 <mat-form-field>
-                    <mat-select>
+                    <mat-select  formControlName="producto">
                       <mat-option *ngFor="let p of productos" [value]="p.cod_prod">
                         {{p.desc_prod}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
             </td>
-            <td>
-                <mat-form-field>
-                    <mat-select>
-                      <mat-option *ngFor="let trab of trabajadores" [value]="trab.id_trab">
-                        {{trab.nombre_trab}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field>
-                    <mat-select>
-                      <mat-option *ngFor="let hab of habilidades" [value]="hab.cod_hab">
-                        {{hab.desc_hab}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-            </td>
-            <td>
+            <td colspan="3" valign="top" style="vertical-align:text-top;">
+              <div class="form-group" formGroupName="tjdor">
+                <table>
+                  <tr *ngFor="let t of trabActs">
+                    <td>{{t.trabT}}</td>
+                    <td>{{t.espT}}</td>
+                    <td>{{t.mh}}:{{t.hh}}</td>
+                  </tr>
+                  <tr>
+                    <td valign="top" style="vertical-align:text-top;">
+                        <mat-form-field>
+                            <mat-select formControlName="t">
+                              <mat-option *ngFor="let trab of trabajadores" [value]="trab.id_trab">
+                                {{trab.nombre_trab}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </td>
+                    <td valign="top" style="vertical-align:text-top;">
+                        <mat-form-field>
+                            <mat-select formControlName="esp">
+                              <mat-option *ngFor="let hab of habilidades" [value]="hab.cod_hab">
+                                {{hab.desc_hab}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </td>
+                    <td valign="top" style="vertical-align:text-top;">
+                        <mat-form-field style="width:80px !important">
+                            <input matInput formControlName="hh" type="number" min="0" max="24" style="width:42% !important">:
+                            <input matInput formControlName="hh" type="number" min="0" max="59" style="width:42% !important">
+                          </mat-form-field>
+                          <button type="button" mat-icon-button (click)="addTrabActv(cronogramaForm.get('actv.tjdor'))"><mat-icon>
+                              <i class="material-icons">
+                                add
+                              </i>  
+                            </mat-icon></button>
+                    </td>
+              </tr>
+            </table>
+            </div>
+          </td>
+            <td valign="top" style="vertical-align:text-top;">
                 <mat-form-field style="width:40px !important">
-                    <input matInput style="width:42% !important" value="10">:
-                    <input matInput style="width:42% !important" value="10">
-                  </mat-form-field>
-            </td>
-            <td>
-                <mat-form-field style="width:40px !important">
-                    <input matInput style="width:42% !important" value="10">:
-                    <input matInput style="width:42% !important" value="10">
+                    <input matInput type="number" min="0" max="24" style="width:42% !important" value="10">:
+                    <input matInput type="number" min="0" max="59" style="width:42% !important" value="10">
                   </mat-form-field>
             </td>
           </tr>
         </tbody>
         </table>
+      </div>
       </form>
   </div>
   <br>

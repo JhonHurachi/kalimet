@@ -102,5 +102,25 @@ control.eliminarOrden = async(req, res)=>{
         res.status(404).send({Msg:error});
     }
 }
+
+control.agregarActividad = async(req, res)=>{
+    try{
+        let con = await client.query('select * from usp_insert_actividad($1, $2, $3, $4, $5, $6)',[req.body.origen, req.body.descripcion, req.body.trabajo, req.body.producto, req.body.horas, req.body.minutos])
+        res.status(200).send({Msg:'Inserción exitosa'});
+    }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }
+}
+
+control.agregarActividadTrabajador = async(req, res)=>{
+    try{
+        let con = await client.query('select * from usp_insert_trabajador_actividad($1, $2, $3, $4, $5, $6)',[req.body.actividad, req.body.trabajador, req.body.especialidad, req.body.categoria, req.body.horas, req.body.minutos])
+        res.status(200).send({Msg:'Inserción exitosa'});
+    }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }
+}
 //await client.end();
 module.exports = control

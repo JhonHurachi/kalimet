@@ -1,9 +1,11 @@
 import { TrabajadoresService } from './../../../servicios/trabajadores.service';
 import { Trabajador } from './../../mantenimiento/trabajadores/actualizar-trabajador/actualizar-trabajador.component';
 import { OrdenesService } from './../../../servicios/ordenes.service';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UtilsService } from '../../../servicios/utils.service';
+import * as moment from 'moment';
 
 export interface Orden{
   nro:number,
@@ -21,8 +23,25 @@ export interface Origen{
   vcontact_orden: string
 }
 
-export interface Trabajador{
+export interface Trabaj{
+  or: number,
+  trab:number,
+  trabT:string,
+  esp: number,
+  espT: string,
+  hh:number,
+  mh:number,
+  cat: number
+}
 
+export interface Actividad{
+  tipo:number,
+  desc:string,
+  trabajo:number,
+  producto:number,
+  trabajs: Array<Trabaj>,
+  ht:number,
+  mt:number
 }
 
 @Component({
@@ -53,16 +72,66 @@ export class CronogramaComponent implements OnInit {
   trabajos:any
   productos:any
   habilidades:any
+  ahora:string=moment(new Date()).format('YYYY-MM-DDThh:mm')
+  trabAct:Trabaj
+  actividad:Actividad
+  trabActs:Array<Trabaj>=[]
+  actividades:Array<Actividad>
+  cronogramaForm:FormGroup
+  o:number
 
   constructor(
     private route:ActivatedRoute,
     private ordenesService:OrdenesService,
     private trabajadoresService:TrabajadoresService,
-    private utilsService:UtilsService
-  ) { }
+    private utilsService:UtilsService,
+    private fb:FormBuilder
+  ) {
+    this.cronogramaForm = this.fb.group({
+      'fecha':[null,Validators.required],
+      actv:fb.group({
+      'tipo':[null,Validators.required],
+      'nombre':[null, Validators.compose([Validators.required])],
+      'trabajo':[null, Validators.required],
+      'producto':[null, Validators.required],
+      tjdor:fb.group({
+        't':[null, Validators.required],
+        'esp':[null, Validators.required],
+        'hh':[1,Validators.required],
+        'mh':[0,Validators.required]
+      }),
+      ht:[1,Validators.required],
+      mt:[0,Validators.required]
+    })})
+   }
+
+  addTrabActv(ta){
+      this.trabAct= {
+      or: this.o,
+      trab:1,
+      trabT:'string',
+      esp: ta.value.esp,
+      espT: 'asdasd',
+      hh:ta.value.hh,
+      mh:ta.value.mh,
+      cat: 0
+    }
+    this.trabActs.push(this.trabAct)
+    console.log(this.trabActs)
+  }
+
+  addActiv(ac){
+
+  }
+
+  addCronograma(ac){
+
+  }
 
   ngOnInit() {
+    console.log(this.ahora)
     this.sub = this.route.params.subscribe(params => {
+      this.o = +params['id']
       this.ordenesService.getOrden(+params['id'])
         .subscribe(
           (data)=>{

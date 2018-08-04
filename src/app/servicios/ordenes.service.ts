@@ -43,4 +43,12 @@ export class OrdenesService {
   public deleteEmpresa(id:any, cabecera:any):Observable<any>{
     return this.http.delete(`${this.url}empresas/eliminarEmpresa/${id}`, cabecera);
   }
+
+  public setActividad(body:any, cabecera:any):Observable<any>{
+    return this.http.post(`${this.url}ordenes/agregarActividad`, body, cabecera);
+  }
+
+  public setActividadTrabajador(body:any, cabecera:any):Observable<any>{
+    return this.http.post(`${this.url}ordenes/agregarActividadTrabajador`, body, cabecera);
+  }
 }
