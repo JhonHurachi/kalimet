@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NuevoResponsableComponent } from './nuevo-responsable.component';
+import { VerActivsComponent } from './ver-activs.component';
 
-describe('NuevoResponsableComponent', () => {
-  let component: NuevoResponsableComponent;
-  let fixture: ComponentFixture<NuevoResponsableComponent>;
+describe('VerActivsComponent', () => {
+  let component: VerActivsComponent;
+  let fixture: ComponentFixture<VerActivsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NuevoResponsableComponent ]
+      declarations: [ VerActivsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NuevoResponsableComponent);
+    fixture = TestBed.createComponent(VerActivsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

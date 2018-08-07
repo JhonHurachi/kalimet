@@ -1,3 +1,7 @@
+import { ActualizarActivComponent } from './activs/actualizar-activ/actualizar-activ.component';
+import { NuevoActivComponent } from './activs/nuevo-activ/nuevo-activ.component';
+import { VerActivsComponent } from './activs/ver-activs/ver-activs.component';
+import { ActivsComponent } from './activs/activs/activs.component';
 import { ActualizarTrabajadorComponent } from './trabajadores/actualizar-trabajador/actualizar-trabajador.component';
 import { NuevoTrabajadorComponent } from './trabajadores/nuevo-trabajador/nuevo-trabajador.component';
 import { VerEmpresasComponent } from './ver-empresas/ver-empresas.component';
@@ -48,6 +52,24 @@ const routes: Routes = [
               {
                 path: "actualizar/:id",
                 component: ActualizarTrabajadorComponent
+              }
+            ]
+          },
+          {
+            path:"activs",
+            component: ActivsComponent,
+            children:[
+              {
+                path:"lista",
+                component: VerActivsComponent
+              },
+              {
+                path:"nuevo",
+                component: NuevoActivComponent
+              },
+              {
+                path:"actualizar/:id",
+                component: ActualizarActivComponent
               }
             ]
           }

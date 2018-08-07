@@ -119,4 +119,61 @@ control.habilidades= async(req,res)=>{
         res.status(404).send({Msg:error});
     }}
 
+control.activs = async(req,res)=>{
+    let activs = []
+    try{
+        
+        let cons = await client.query("select * from usp_listar_act()");
+        cons.rows.forEach(row=>{
+            activs.push(row)
+        });
+        res.status(200).send(activs)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
+control.agregarActiv = async(req, res)=>{
+    try{
+        let con = await client.query('select * from usp_create_act ($1)',[req.body.activ])
+        res.status(200).send({Msg:'Inserción exitosa'});
+    }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }
+}
+
+control.eliminarActiv = async(req, res)=>{
+    try{
+        let con = await client.query('select * from usp_delete_act($1)',[req.params.id])
+        res.status(200).send({Msg:'Eliminación exitosa'});
+    }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }
+}
+
+control.actualizarActiv = async(req, res)=>{
+    try{
+        let con = await client.query('select * from usp_update_act($1,$2)',[req.body.id,req.body.activ])
+        res.status(200).send({Msg:'Actualización exitosa'});
+    }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }
+}
+
+control.activ= async(req,res)=>{
+    let activ = {}
+    try{
+        let cons = await client.query("SELECT * FROM usp_ver_act($1)",[+req.params.id]);
+        cons.rows.forEach(row=>{
+            activ = row;
+        });
+        res.status(200).send(activ)   
+        }
+    catch(error){
+        res.status(404).send({Msg:error});
+    }}
+
 module.exports = control

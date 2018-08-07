@@ -1,6 +1,5 @@
 import { CronogramaComponent } from './cronograma/cronograma.component';
 import { EmpresasComponent } from './../mantenimiento/empresas/empresas.component';
-import { NuevoResponsableComponent } from './nuevo-responsable/nuevo-responsable.component';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { OrdenesProduccionComponent } from './ordenes-produccion/ordenes-produccion.component';
 import { NgModule } from '@angular/core';
@@ -24,10 +23,6 @@ const routes: Routes = [
                 path: "",
                 redirectTo: "ordenes",
                 pathMatch: "full"
-            },
-            {
-                path: "nuevoResponsable",
-                component: NuevoResponsableComponent
             },
             {
                 path:"orden/:id",

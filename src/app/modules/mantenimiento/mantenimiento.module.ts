@@ -14,6 +14,10 @@ import { VerTrabajadoresComponent } from './trabajadores/ver-trabajadores/ver-tr
 import { TrabajadoresComponent } from './trabajadores/trabajadores/trabajadores.component';
 import { NuevoTrabajadorComponent } from './trabajadores/nuevo-trabajador/nuevo-trabajador.component';
 import { ActualizarTrabajadorComponent } from './trabajadores/actualizar-trabajador/actualizar-trabajador.component';
+import { VerActivsComponent } from './activs/ver-activs/ver-activs.component';
+import { ActivsComponent } from './activs/activs/activs.component';
+import { ActualizarActivComponent } from './activs/actualizar-activ/actualizar-activ.component';
+import { NuevoActivComponent } from './activs/nuevo-activ/nuevo-activ.component';
 
 @NgModule({
   imports: [
@@ -31,7 +35,11 @@ import { ActualizarTrabajadorComponent } from './trabajadores/actualizar-trabaja
     VerTrabajadoresComponent,
     TrabajadoresComponent,
     NuevoTrabajadorComponent,
-    ActualizarTrabajadorComponent
+    ActualizarTrabajadorComponent,
+    VerActivsComponent,
+    ActivsComponent,
+    ActualizarActivComponent,
+    NuevoActivComponent
   ],
   providers:[
     EmpresasService

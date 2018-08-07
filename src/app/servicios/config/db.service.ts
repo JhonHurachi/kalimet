@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DbService {
-  url: String = 'https://kalimet.herokuapp.com/api/'
-  //url: String = 'http://localhost:3000/api/'
+  url: string = 'https://kalimet.herokuapp.com/api/'
+  //url: string = 'http://localhost:3000/api/'
 
   constructor() { }
 
-  getUrl():String{
+  getUrl():string{
     return this.url
   }
 }

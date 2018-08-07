@@ -39,6 +39,7 @@
             </table>
       </div>
     </div>
+  <br>
   <div style="overflow-x:auto;" *ngIf="ver; else agregar">
     <form [formGroup]="cronogramaForm" (ngSubmit)="addCronograma(cronogramaForm.value)">
       <div fxLayout="row" style="text-align:left !important">
@@ -50,30 +51,56 @@
       </div>
       <br>
       <div class="form-group" formGroupName="actv">
-      <table class="tabla">
+      <table class="tabla" style="text-align:center">
           <thead>
             <th>Tipo</th>
+            <th></th>
             <th>Actividad</th>
             <th>Trabajo</th>
             <th>Nombres</th>
             <th>Especialidad</th>
             <th>H-H</th>
-            <th>HHE</th>
+            <th></th>
+            <th>H-T</th>
+            <th></th>
           </thead>
         <tbody>
+          <tr *ngFor="let a of actividades; let i=index">
+            <td>{{a.tipo}}</td>
+            <td>{{i|indexPipe}}</td>
+            <td>{{a.desc}}</td>
+            <td>{{a.trabajo}}&nbsp;de&nbsp;{{a.producto}}</td>
+            <td colspan="4">
+              <table>
+                <tr *ngFor="let t of a.trabajs">
+                    <td>{{t.trabT}}</td>
+                    <td>{{t.espT}}</td>
+                    <td style="text-align:right">{{t.hh}}&nbsp;horas:{{t.mh}}&nbsp;min</td>
+                    <td></td>
+                </tr>
+              </table>
+            </td>
+            <td>{{a.ht}}:{{a.mt}}</td>
+            <td></td>
+          </tr>
           <tr>
             <td valign="top" style="vertical-align:text-top;">
                 <mat-form-field  style="width:40px !important">
-                    <mat-select formControlName="tipo">
+                    <mat-select formControlName="tipo" disa>
                       <mat-option *ngFor="let ori of origenes" [value]="ori.vcod_origen">
                         {{ori.vnom_ord}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
             </td>
+            <td></td>
             <td valign="top" style="vertical-align:text-top;">
               <mat-form-field>
-                <input matInput  formControlName="nombre">
+                  <mat-select  formControlName="nombre">
+                      <mat-option *ngFor="let a of activs" [value]="a.des_activ">
+                        {{a.des_activ}}
+                    </mat-option>
+                  </mat-select>
               </mat-form-field>
             </td>
             <td valign="top" style="vertical-align:text-top;">
@@ -92,13 +119,14 @@
                   </mat-select>
                 </mat-form-field>
             </td>
-            <td colspan="3" valign="top" style="vertical-align:text-top;">
+            <td colspan="4" valign="top" style="vertical-align:text-top;">
               <div class="form-group" formGroupName="tjdor">
                 <table>
                   <tr *ngFor="let t of trabActs">
                     <td>{{t.trabT}}</td>
                     <td>{{t.espT}}</td>
-                    <td>{{t.mh}}:{{t.hh}}</td>
+                    <td>{{t.hh}}:{{t.mh}}</td>
+                    <td></td>
                   </tr>
                   <tr>
                     <td valign="top" style="vertical-align:text-top;">
@@ -119,27 +147,39 @@
                             </mat-select>
                           </mat-form-field>
                     </td>
+                    <td valign="bottom" style="vertical-align:text-bottom;">
+                          <button mat-icon-button (click)="openHoraH()">
+                              <mat-icon aria-label="Editar">access_time</mat-icon>
+                          </button>
+                            {{horaH|number:'2.0-0'}}:{{minH|number:'2.0-0'}}
+                          
+                    </td>
                     <td valign="top" style="vertical-align:text-top;">
-                        <mat-form-field style="width:80px !important">
-                            <input matInput formControlName="hh" type="number" min="0" max="24" style="width:42% !important">:
-                            <input matInput formControlName="hh" type="number" min="0" max="59" style="width:42% !important">
-                          </mat-form-field>
-                          <button type="button" mat-icon-button (click)="addTrabActv(cronogramaForm.get('actv.tjdor'))"><mat-icon>
-                              <i class="material-icons">
-                                add
-                              </i>  
-                            </mat-icon></button>
+                        <button type="button" mat-icon-button (click)="addTrabActv(cronogramaForm.get('actv.tjdor'))"
+                        [disabled]="!cronogramaForm.valid"><mat-icon>
+                            <i class="material-icons">
+                              add
+                            </i>  
+                          </mat-icon></button>
                     </td>
               </tr>
             </table>
             </div>
           </td>
-            <td valign="top" style="vertical-align:text-top;">
-                <mat-form-field style="width:40px !important">
-                    <input matInput type="number" min="0" max="24" style="width:42% !important" value="10">:
-                    <input matInput type="number" min="0" max="59" style="width:42% !important" value="10">
-                  </mat-form-field>
-            </td>
+          <td valign="top" style="vertical-align:text-top;">
+              <button mat-icon-button (click)="openHoraT()">
+                  <mat-icon aria-label="Editar">access_time</mat-icon>
+              </button>
+                {{horaT|number:'2.0-0'}}:{{minT|number:'2.0-0'}}
+              
+        </td>
+        <td>
+            <button type="button" mat-icon-button (click)="addActiv(cronogramaForm.get('actv').value)" [disabled]="!cronogramaForm.valid"><mat-icon>
+                <i class="material-icons">
+                  add
+                </i>  
+              </mat-icon></button>
+        </td>
           </tr>
         </tbody>
         </table>

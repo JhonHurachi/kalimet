@@ -1,0 +1,38 @@
+<div class="cabecera" style="height:90%; text-align:center"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="10px">
+  <div fxFlex="20%" fxFlex.xs="0" fxFlex.md="20%"></div>
+  <div class="cabecera, desplazamiento" fxFlex="60%" fxFlex.md="60%" fxFlex.xs="100%">
+    <div><h2>Nueva Actividad</h2></div>
+    <br>
+    <form [formGroup]="activForm" (ngSubmit)="addActiv(activForm.value)">
+          <table  class="campo">
+            <tr>
+              <td class="labelCampo">Actividad</td>
+              <td>
+                <mat-form-field class="campo">
+                  <input matInput formControlName="activ">
+                </mat-form-field>
+                <div class="alerta" *ngIf="!activForm.controls['activ'].valid&&activForm.controls['activ'].touched">
+                    Ingrese una actividad
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button mat-raised-button type="submit" [disabled]="!activForm.valid">
+                  Agregar
+                </button>
+              </td>
+            </tr>
+          </table>
+          <br>              
+    </form>       
+  </div>
+  <div fxFlex="20%" fxFlex.md="20%" fxFlex.xs="0"></div>
+</div>
+
+

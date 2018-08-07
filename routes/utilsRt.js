@@ -10,6 +10,11 @@ router
     .get('/api/contactos', control.contactos)
     .get('/api/trabajos', control.trabajos)
     .get('/api/productos', control.productos)
-    .get('/api/habilidades', control.habilidades)
+    .get('/api/habilidades', control.habilidades)    
+    .get('/api/activs', control.activs)
+    .put('/api/actualizarActiv', control.actualizarActiv)
+    .delete('/api/eliminarActiv/:id', control.eliminarActiv)
+    .post('/api/agregarActiv', control.agregarActiv)  
+    .get('/api/activ/:id', control.activ)  
 
 module.exports = router

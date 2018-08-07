@@ -1,0 +1,33 @@
+<div style="height:100%;text-align:center;width:100%">
+    <table style="text-align:center;width:100%">
+        <mat-dialog-content style="text-align:center;width:100%">
+        <tr style="text-align:center">
+            <td style="text-align:center"><button mat-icon-button (click)="addHora()">
+                    <mat-icon aria-label="Editar">keyboard_arrow_up</mat-icon>
+                </button></td>
+            <td style="text-align:center"><button mat-icon-button (click)="addMin()">
+                    <mat-icon aria-label="Editar">keyboard_arrow_up</mat-icon>
+                </button></td>
+        </tr>
+        <tr style="text-align:center">
+            <td style="text-align:center">{{this.tiempo['hora']|number:'2.0-0'}}</td>
+            <td style="text-align:center">{{this.tiempo['min']|number:'2.0-0'}}</td>
+        </tr>
+        <tr style="text-align:center">
+            <td style="text-align:center"><button mat-icon-button (click)="lessHora()">
+                    <mat-icon aria-label="Editar">keyboard_arrow_down</mat-icon>
+                </button></td>
+            <td style="text-align:center"><button mat-icon-button (click)="lessMin()">
+                    <mat-icon aria-label="Editar">keyboard_arrow_down</mat-icon>
+                </button></td>
+        </tr>
+    </mat-dialog-content>
+    <mat-dialog-actions style="text-align:center;width:100%">
+        <tr>
+            <td colspan="2">
+                <button mat-raised-button [mat-dialog-close]="tiempo">Aceptar</button>
+            </td>
+        </tr>
+    </mat-dialog-actions>
+    </table>
+</div>

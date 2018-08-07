@@ -5,9 +5,11 @@
       fxLayoutGap = "0"
       fxLayoutGap.xs = "0"
       fxLayoutAlign="right" style="height:100%;">
-      <div fxFlex="20%">
-        <div class="vertical"><p class="tituloMenu">Navegar</p></div>
-      </div>        
+      <div fxFlex="40%">
+          <div class="vertical"> 
+            <div class="vertical"><img src="../../assets/user-admin.png" class="logo" style="margin:10px" width="70%" height="70%"></div>            
+          </div>
+        </div>        
       <hr class="linea">
       <div style="text-align:left; height:100%">
           <button mat-button class="btnMenu" [routerLink]="'../menu'">
@@ -16,14 +18,18 @@
           <button mat-raised-button class="btnMenu" (click)="verMant()">
             <mat-icon><i class="material-icons">build</i></mat-icon>
             Mantenimientos<mat-icon class="icon-down"><i class="material-icons">keyboard_arrow_down</i></mat-icon></button>
-            <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/empresas/lista'">
-              <mat-icon><i class="material-icons">store_mall_directory</i></mat-icon>
-              Empresas
-          </button>
-          <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/trabajadores/lista'">
-            <mat-icon><i class="material-icons">people</i></mat-icon>
-            Trabajadores
-        </button>
+                <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/empresas/lista'">
+                  <mat-icon><i class="material-icons">store_mall_directory</i></mat-icon>
+                  Empresas
+                </button>
+                <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/trabajadores/lista'">
+                  <mat-icon><i class="material-icons">people</i></mat-icon>
+                  Trabajadores
+                </button>
+                <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/activs/lista'">
+                  <mat-icon><i class="material-icons">people</i></mat-icon>
+                  Actividades
+                </button>
           <button mat-raised-button class="btnMenu" (click)="verVentas()">
             <mat-icon><i class="material-icons">shop</i></mat-icon>
             Ventas<mat-icon class="icon-down"><i class="material-icons">keyboard_arrow_down</i></mat-icon></button>

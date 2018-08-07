@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmpresasService {
 
-  url:String = this.db.getUrl();
+  url:string = this.db.getUrl();
 
   constructor(private http : HttpClient, private db: DbService) { }
 

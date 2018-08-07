@@ -1,0 +1,40 @@
+<div class="cabecera" style="height:90%; text-align:center"
+  fxLayout="column"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="10px">
+  <div><h2>Empresas</h2></div>
+  <div>
+    <button mat-raised-button [routerLink]="'../nuevo'">
+      <mat-icon>
+        <i class="material-icons">add</i>
+      </mat-icon>
+      Añadir
+    </button>
+  </div>
+  <div style="overflow-x:auto;" *ngIf="activs.length>0">
+    <table class="tabla">
+      <thead>
+        <th>Número</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activ of activs">
+          <td>{{activ.cod_activ}}</td>
+          <td>{{activ.des_activ}}</td>
+          <td>
+            <button mat-icon-button (click)="eliminarActiv(activ.cod_activ)">
+              <mat-icon aria-label="Eliminar elemento">delete</mat-icon>
+            </button>
+            <button mat-icon-button [routerLink]="['../actualizar',activ.cod_activ]">
+                <mat-icon aria-label="Editar">edit</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

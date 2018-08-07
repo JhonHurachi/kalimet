@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class TrabajadoresService {
 
-  url:String = this.db.getUrl();
+  url:string = this.db.getUrl();
 
   constructor(private http : HttpClient, private db: DbService) { }
 

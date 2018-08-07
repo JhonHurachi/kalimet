@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UtilsService {
 
-  url:String = this.db.getUrl()
+  url:string = this.db.getUrl()
 
   constructor(private db: DbService, private http:HttpClient ) { }
 
@@ -42,5 +42,25 @@ export class UtilsService {
 
   public getHabilidades():Observable<any>{
     return this.http.get(`${this.url}habilidades`);
+  }
+
+  public getActivs():Observable<any>{
+    return this.http.get(`${this.url}activs`);
+  }
+
+  public getActiv(id:number):Observable<any>{
+    return this.http.get(`${this.url}activ/${id}`);
+  }
+
+  public updateActiv(body:any, cabecera:any):Observable<any>{
+    return this.http.put(`${this.url}actualizarActiv`, body, cabecera);
+  }
+
+  public setActiv(body:any, cabecera:any):Observable<any>{
+    return this.http.post(`${this.url}agregarActiv`, body, cabecera);
+  }
+
+  public deleteActiv(id:any, cabecera:any):Observable<any>{
+    return this.http.delete(`${this.url}eliminarActiv/${id}`, cabecera);
   }
 }

@@ -43,8 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule,
-    CalendarModule,
+    MatSnackBarModule
   ],
   providers:[
     {provide: DateAdapter, useClass:DateFormat},

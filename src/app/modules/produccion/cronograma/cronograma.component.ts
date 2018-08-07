@@ -1,3 +1,5 @@
+import { Hora } from './hora';
+import { MatDialog } from '@angular/material';
 import { TrabajadoresService } from './../../../servicios/trabajadores.service';
 import { Trabajador } from './../../mantenimiento/trabajadores/actualizar-trabajador/actualizar-trabajador.component';
 import { OrdenesService } from './../../../servicios/ordenes.service';
@@ -76,16 +78,22 @@ export class CronogramaComponent implements OnInit {
   trabAct:Trabaj
   actividad:Actividad
   trabActs:Array<Trabaj>=[]
-  actividades:Array<Actividad>
+  actividades:Array<Actividad>=[]
   cronogramaForm:FormGroup
+  horaH:number=0
+  minH:number=1
+  horaT:number=0
+  minT:number=1
   o:number
+  activs = []
 
   constructor(
     private route:ActivatedRoute,
     private ordenesService:OrdenesService,
     private trabajadoresService:TrabajadoresService,
     private utilsService:UtilsService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private dialog : MatDialog,
   ) {
     this.cronogramaForm = this.fb.group({
       'fecha':[null,Validators.required],
@@ -96,40 +104,92 @@ export class CronogramaComponent implements OnInit {
       'producto':[null, Validators.required],
       tjdor:fb.group({
         't':[null, Validators.required],
-        'esp':[null, Validators.required],
-        'hh':[1,Validators.required],
-        'mh':[0,Validators.required]
+        'esp':[null, Validators.required]
       }),
       ht:[1,Validators.required],
       mt:[0,Validators.required]
     })})
    }
 
+  buscarTrabajador(value:number):string{
+    for(let t of this.trabajadores){
+      if(t.id_trab==value)
+        return t.nombre_trab;
+    }
+  }
+
+  buscarEspecialidad(value:number):string{
+    console.log(this.habilidades)
+    for(let e of this.habilidades){
+      if(e.cod_hab==value)
+        return e.desc_hab;
+    }
+  }
+
   addTrabActv(ta){
       this.trabAct= {
       or: this.o,
-      trab:1,
-      trabT:'string',
+      trab:ta.value.t,
+      trabT:this.buscarTrabajador(ta.value.t),
       esp: ta.value.esp,
-      espT: 'asdasd',
-      hh:ta.value.hh,
-      mh:ta.value.mh,
+      espT: this.buscarEspecialidad(ta.value.esp),
+      hh:this.horaH,
+      mh:this.minH,
       cat: 0
     }
     this.trabActs.push(this.trabAct)
-    console.log(this.trabActs)
   }
 
   addActiv(ac){
-
+    console.log(ac)
+    this.actividad = {
+      tipo:ac.tipo,
+      desc:ac.nombre,
+      trabajo:ac.trabajo,
+      producto:ac.producto,
+      trabajs: this.trabActs,
+      ht:this.horaT,
+      mt:this.minT
+    }
+    this.actividades.push(this.actividad)
+    this.trabActs = []
+    console.log(this.actividades)
   }
 
   addCronograma(ac){
 
   }
 
+  openHoraH() {
+    const dialogRef = this.dialog.open(Hora, {
+      width: '150px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {     
+      if(result!=null){
+          console.log(result)
+          this.horaH=result.hora
+          this.minH=result.min
+        }
+      })
+    }
+
+  openHoraT() {
+    const dialogRef = this.dialog.open(Hora, {
+      width: '150px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {     
+      if(result!=null){
+          console.log(result)
+          this.horaT=result.hora
+          this.minT=result.min
+        }
+      })
+    }
+  
+
   ngOnInit() {
-    console.log(this.ahora)
     this.sub = this.route.params.subscribe(params => {
       this.o = +params['id']
       this.ordenesService.getOrden(+params['id'])
@@ -140,7 +200,6 @@ export class CronogramaComponent implements OnInit {
             this.orden.referencia = data.ref_orden;
             this.orden.responsable = data.resp_orden;
             this.orden.cliente = data.cliente_orden;
-            console.log(this.orden)
           },
           (error)=>{console.log(error)}
         )
@@ -190,6 +249,16 @@ export class CronogramaComponent implements OnInit {
         .subscribe(
           (data)=>{          
             this.habilidades= data;
+          },
+          (error)=>{
+            console.log(error)
+          }
+      );
+
+      this.utilsService.getActivs()
+        .subscribe(
+          (data)=>{          
+            this.activs= data;
           },
           (error)=>{
             console.log(error)
