@@ -11,6 +11,7 @@ import { MatSnackBar } from '../../../../../node_modules/@angular/material';
 import { Router } from '../../../../../node_modules/@angular/router';
 import { UtilsService } from '../../../servicios/utils.service';
 import { EmpresasService } from '../../../servicios/empresas.service';
+import * as moment from 'moment';
 
 export interface Trabajador {
   id_trab:number,
@@ -60,7 +61,8 @@ export class NuevoComponent implements OnInit {
   minDate = new Date(2000, 0, 1);
   maxDate = new Date(2020, 0, 1);
   contactos: Array<Contacto>=[]
-  numOperacion:number=1
+  numOperacion:number=1  
+  ahora:string=moment(new Date()).format('YYYY-MM-DDThh:mm')
   
   constructor(
     private dialog : MatDialog,
@@ -78,7 +80,9 @@ export class NuevoComponent implements OnInit {
       'referencia': [null, Validators.compose([Validators.required])],
       cliente: new FormControl([null, Validators.compose([Validators.required])]),
       'opP': [null, Validators.compose([Validators.required])],
-      contacto : new FormControl([null,Validators.compose([Validators.required])])
+      contacto : new FormControl([null,Validators.compose([Validators.required])]),
+      'fechaInicio':[new Date(), Validators.required],
+      'fechaFin':[new Date(), Validators.required],
     })
   }
 

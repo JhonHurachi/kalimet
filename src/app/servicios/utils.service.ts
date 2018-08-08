@@ -32,14 +32,6 @@ export class UtilsService {
     return this.http.get(`${this.url}contactos`);
   }
 
-  public getTrabajos():Observable<any>{
-    return this.http.get(`${this.url}trabajos`);
-  }
-
-  public getProductos():Observable<any>{
-    return this.http.get(`${this.url}productos`);
-  }
-
   public getHabilidades():Observable<any>{
     return this.http.get(`${this.url}habilidades`);
   }
@@ -63,4 +55,47 @@ export class UtilsService {
   public deleteActiv(id:any, cabecera:any):Observable<any>{
     return this.http.delete(`${this.url}eliminarActiv/${id}`, cabecera);
   }
+//Productos
+  public getProductos():Observable<any>{
+    return this.http.get(`${this.url}productos`);
+  }
+
+  public getProducto(id:number):Observable<any>{
+    return this.http.get(`${this.url}producto/${id}`);
+  }
+
+  public updateProducto(body:any, cabecera:any):Observable<any>{
+    return this.http.put(`${this.url}actualizarProducto`, body, cabecera);
+  }
+
+  public setProducto(body:any, cabecera:any):Observable<any>{
+    return this.http.post(`${this.url}agregarProducto`, body, cabecera);
+  }
+
+  public deleteProducto(id:any, cabecera:any):Observable<any>{
+    return this.http.delete(`${this.url}eliminarProducto/${id}`, cabecera);
+  }
+//Fin
+
+//Trabajos
+public getTrabajos():Observable<any>{
+  return this.http.get(`${this.url}trabajos`);
+}
+
+public getTrabajo(id:number):Observable<any>{
+  return this.http.get(`${this.url}trabajo/${id}`);
+}
+
+public updateTrabajo(body:any, cabecera:any):Observable<any>{
+  return this.http.put(`${this.url}actualizarTrabajo`, body, cabecera);
+}
+
+public setTrabajo(body:any, cabecera:any):Observable<any>{
+  return this.http.post(`${this.url}agregarTrabajo`, body, cabecera);
+}
+
+public deleteTrabajo(id:any, cabecera:any):Observable<any>{
+  return this.http.delete(`${this.url}eliminarTrabajo/${id}`, cabecera);
+}
+//Fin
 }

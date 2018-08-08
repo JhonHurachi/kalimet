@@ -1,22 +1,20 @@
-import { UtilsService } from './../../../../servicios/utils.service';
+import { Iproducto } from './../../../../interfaces/producto';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '../../../../../../node_modules/@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '../../../../../../node_modules/@angular/router';
+import { UtilsService } from './../../../../servicios/utils.service';
 
 @Component({
-  selector: 'kal-actualizar-activ',
-  templateUrl: './actualizar-activ.component.html',
-  styleUrls: ['./actualizar-activ.component.css']
+  selector: 'kal-actualizar-producto',
+  templateUrl: './actualizar-producto.component.html',
+  styles: []
 })
-export class ActualizarActivComponent implements OnInit {
+export class ActualizarProductoComponent implements OnInit {
 
-  activForm: FormGroup;
+  productoForm: FormGroup;
   sub: any;
-  activ= {
-    activ:"",
-    id:0
-  }
+  producto:Iproducto
 
   constructor(
     private utilsService:UtilsService,
@@ -26,23 +24,22 @@ export class ActualizarActivComponent implements OnInit {
     private route:ActivatedRoute,
     
   ) { 
-    this.activForm = this.fb.group({
-      'id':[null, Validators.required],
-      'activ':[null, Validators.required]
+    this.productoForm = this.fb.group({
+      'codigo':[null, Validators.required],
+      'descripcion':[null, Validators.required]
     })
   }
 
-  updateActiv(activ){
-    console.log(activ)
+  updateProducto(producto){
     let headers = {
       'Content-Type': 'application/json'
     }
-    this.utilsService.updateActiv(activ, headers)
+    this.utilsService.updateProducto(producto, headers)
       .subscribe(
         (data)=>{
               console.log('Exito');
-              this.openAddSuccess("Actividad actualizada", "Aceptar")
-              this.router.navigate(["mantenimientos/activs/lista"]);
+              this.openAddSuccess("Producto actualizado", "Aceptar")
+              this.router.navigate(["mantenimientos/productos/lista"]);
         },
         (error)=>{console.log(error)}
       );
@@ -56,12 +53,11 @@ export class ActualizarActivComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.utilsService.getActiv(+params['id'])
+      this.utilsService.getProducto(+params['id'])
       .subscribe(
         (data)=>{
-          this.activ.id = +params['id'];
-          this.activ.activ = data.des_activ;
-          this.activForm.setValue(this.activ)
+          this.producto = {codigo:+params['id'],descripcion:data.descripcion}
+          this.productoForm.setValue(this.producto)
         }
       );
   });

@@ -18,6 +18,14 @@ import { VerActivsComponent } from './activs/ver-activs/ver-activs.component';
 import { ActivsComponent } from './activs/activs/activs.component';
 import { ActualizarActivComponent } from './activs/actualizar-activ/actualizar-activ.component';
 import { NuevoActivComponent } from './activs/nuevo-activ/nuevo-activ.component';
+import { TrabajosComponent } from './trabajos1/trabajos/trabajos.component';
+import { ProductosComponent } from './productos1/productos/productos.component';
+import { ActualizarProductoComponent } from './productos1/actualizar-producto/actualizar-producto.component';
+import { NuevoProductoComponent } from './productos1/nuevo-producto/nuevo-producto.component';
+import { VerProductosComponent } from './productos1/ver-productos/ver-productos.component';
+import { VerTrabajosComponent } from './trabajos1/ver-trabajos/ver-trabajos.component';
+import { ActualizarTrabajosComponent } from './trabajos1/actualizar-trabajos/actualizar-trabajos.component';
+import { NuevoTrabajoComponent } from './trabajos1/nuevo-trabajo/nuevo-trabajo.component';
 
 @NgModule({
   imports: [
@@ -39,7 +47,15 @@ import { NuevoActivComponent } from './activs/nuevo-activ/nuevo-activ.component'
     VerActivsComponent,
     ActivsComponent,
     ActualizarActivComponent,
-    NuevoActivComponent
+    NuevoActivComponent,
+    TrabajosComponent,
+    ProductosComponent,
+    ActualizarProductoComponent,
+    NuevoProductoComponent,
+    VerProductosComponent,
+    VerTrabajosComponent,
+    ActualizarTrabajosComponent,
+    NuevoTrabajoComponent
   ],
   providers:[
     EmpresasService

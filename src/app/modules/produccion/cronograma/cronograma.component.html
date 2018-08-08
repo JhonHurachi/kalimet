@@ -42,14 +42,6 @@
   <br>
   <div style="overflow-x:auto;" *ngIf="ver; else agregar">
     <form [formGroup]="cronogramaForm" (ngSubmit)="addCronograma(cronogramaForm.value)">
-      <div fxLayout="row" style="text-align:left !important">
-        <div fxFlex="25%" fxFlex.xs="100">
-            <h4>Inicio Programado:</h4>
-            <input matInput type="datetime-local" [min]="ahora" formControlName="fecha">
-        </div>
-        <div fxFlex="75%" fxFlex.xs="0%"></div>
-      </div>
-      <br>
       <div class="form-group" formGroupName="actv">
       <table class="tabla" style="text-align:center">
           <thead>

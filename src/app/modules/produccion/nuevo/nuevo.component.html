@@ -84,6 +84,28 @@
                 </div>               
           </td>
         </tr>
+        <tr>
+            <td>Inicio de actividades</td>
+          <td>
+              <mat-form-field>
+                  <input matInput type="datetime-local" [min]="ahora" formControlName="fechaInicio">
+                </mat-form-field>  
+                <div class="alerta" *ngIf="!produccionForm.controls['fechaInicio'].valid&&produccionForm.controls['fechaInicio'].touched">
+                    Ingrese una fecha válida
+                </div>               
+          </td>
+        </tr>
+        <tr>
+            <td>Fin de actividades</td>
+          <td>
+              <mat-form-field>
+                  <input matInput type="datetime-local" [min]="ahora" formControlName="fechaFin">
+                </mat-form-field>  
+                <div class="alerta" *ngIf="!produccionForm.controls['fechaFin'].valid&&produccionForm.controls['fechaFin'].touched">
+                    Ingrese una fecha válida
+                </div>               
+          </td>
+        </tr>
       </table>
     </div>
     <div class="cabecera" fxFlex=60% fxFlex.xs=100%>

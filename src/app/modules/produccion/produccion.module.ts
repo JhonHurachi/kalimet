@@ -1,4 +1,3 @@
-import { IndexPipe } from './../../pipes/index.pipe';
 import { Hora } from './cronograma/hora';
 import { Trabajo } from './nuevo/dialogs/trabajo';
 import { OrdenesComponent } from './ordenes/ordenes.component';
@@ -26,8 +25,7 @@ import { TrabajadoresPipe } from '../../pipes/trabajadores.pipe';
     Trabajo, 
     Hora,
     CronogramaComponent,
-    TrabajadoresPipe,
-    IndexPipe],
+    TrabajadoresPipe],
   entryComponents:[
     Adicional,
     Trabajo,

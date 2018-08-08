@@ -22,6 +22,7 @@ import {
  } from '@angular/material'
  import {CalendarModule} from 'primeng/calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IndexPipe } from '../../pipes/index.pipe';
 
 @NgModule({
   imports: [
@@ -67,9 +68,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    CalendarModule
+    CalendarModule,
+    IndexPipe
   ],
-  declarations: []
+  declarations: [
+    IndexPipe
+  ]
 })
 export class MaterialModule {
   constructor(private dateAdapter:DateAdapter<Date>){

@@ -1,7 +1,8 @@
+import { ITrabajo } from './../../../interfaces/trabajo';
+import { Iproducto } from './../../../interfaces/producto';
 import { Hora } from './hora';
 import { MatDialog } from '@angular/material';
 import { TrabajadoresService } from './../../../servicios/trabajadores.service';
-import { Trabajador } from './../../mantenimiento/trabajadores/actualizar-trabajador/actualizar-trabajador.component';
 import { OrdenesService } from './../../../servicios/ordenes.service';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -71,8 +72,8 @@ export class CronogramaComponent implements OnInit {
   origenes:Array<Origen>
   ver:boolean=false;
   trabajadores:any
-  trabajos:any
-  productos:any
+  trabajos:Array<ITrabajo>
+  productos:Array<Iproducto>
   habilidades:any
   ahora:string=moment(new Date()).format('YYYY-MM-DDThh:mm')
   trabAct:Trabaj
@@ -96,7 +97,6 @@ export class CronogramaComponent implements OnInit {
     private dialog : MatDialog,
   ) {
     this.cronogramaForm = this.fb.group({
-      'fecha':[null,Validators.required],
       actv:fb.group({
       'tipo':[null,Validators.required],
       'nombre':[null, Validators.compose([Validators.required])],

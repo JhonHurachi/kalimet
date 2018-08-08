@@ -27,8 +27,16 @@
                     Trabajadores
                   </button>
                   <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/activs/lista'">
-                    <mat-icon><i class="material-icons">people</i></mat-icon>
+                    <mat-icon><i class="material-icons">work</i></mat-icon>
                     Actividades
+                  </button>
+                  <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/trabajos/lista'">
+                    <mat-icon><i class="material-icons">directions_walk</i></mat-icon>
+                    Trabajos
+                  </button>
+                  <button *ngIf="verM" mat-raised-button class="btnSubMenu" [routerLink]="'../mantenimientos/productos/lista'">
+                    <mat-icon><i class="material-icons">layers</i></mat-icon>
+                    Productos
                   </button>
             <button mat-raised-button class="btnMenu" (click)="verVentas()">
               <mat-icon><i class="material-icons">shop</i></mat-icon>

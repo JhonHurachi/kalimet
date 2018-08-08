@@ -1,22 +1,21 @@
-import { UtilsService } from './../../../../servicios/utils.service';
+import { ITrabajo } from './../../../../interfaces/trabajo';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '../../../../../../node_modules/@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '../../../../../../node_modules/@angular/router';
+import { UtilsService } from './../../../../servicios/utils.service';
 
 @Component({
-  selector: 'kal-actualizar-activ',
-  templateUrl: './actualizar-activ.component.html',
-  styleUrls: ['./actualizar-activ.component.css']
+  selector: 'kal-actualizar-trabajos',
+  templateUrl: './actualizar-trabajos.component.html',
+  styles: []
 })
-export class ActualizarActivComponent implements OnInit {
+export class ActualizarTrabajosComponent implements OnInit {
 
-  activForm: FormGroup;
+  
+  trabajoForm: FormGroup;
   sub: any;
-  activ= {
-    activ:"",
-    id:0
-  }
+  trabajo: ITrabajo
 
   constructor(
     private utilsService:UtilsService,
@@ -26,23 +25,23 @@ export class ActualizarActivComponent implements OnInit {
     private route:ActivatedRoute,
     
   ) { 
-    this.activForm = this.fb.group({
-      'id':[null, Validators.required],
-      'activ':[null, Validators.required]
+    this.trabajoForm = this.fb.group({
+      'codigo':[null, Validators.required],
+      'descripcion':[null, Validators.required]
     })
   }
 
-  updateActiv(activ){
-    console.log(activ)
+  updateTrabajo(trabajo){
     let headers = {
       'Content-Type': 'application/json'
     }
-    this.utilsService.updateActiv(activ, headers)
+    console.log(trabajo)
+    this.utilsService.updateTrabajo(trabajo, headers)
       .subscribe(
         (data)=>{
               console.log('Exito');
-              this.openAddSuccess("Actividad actualizada", "Aceptar")
-              this.router.navigate(["mantenimientos/activs/lista"]);
+              this.openAddSuccess("Trabajo actualizado", "Aceptar")
+              this.router.navigate(["mantenimientos/trabajos/lista"]);
         },
         (error)=>{console.log(error)}
       );
@@ -56,15 +55,13 @@ export class ActualizarActivComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.utilsService.getActiv(+params['id'])
+      this.utilsService.getTrabajo(+params['id'])
       .subscribe(
         (data)=>{
-          this.activ.id = +params['id'];
-          this.activ.activ = data.des_activ;
-          this.activForm.setValue(this.activ)
+          this.trabajo = {codigo:+params['id'],descripcion:data.descripcion}
+          this.trabajoForm.setValue(this.trabajo)
         }
       );
   });
   }
-
 }

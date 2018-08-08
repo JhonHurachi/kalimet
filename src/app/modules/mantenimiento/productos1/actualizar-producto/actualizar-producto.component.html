@@ -1,0 +1,35 @@
+<div class="cabecera" style="height:90%; text-align:center"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="10px">
+  <div fxFlex="20%" fxFlex.xs="0" fxFlex.md="20%"></div>
+  <div class="cabecera, desplazamiento" fxFlex="60%" fxFlex.md="60%" fxFlex.xs="100%">
+    <div><h2>Actualizar Producto</h2></div>
+    <br>
+    <form [formGroup]="productoForm" (ngSubmit)="updateProducto(productoForm.value)">
+          <table  class="campo">
+            <tr>
+              <td class="labelCampo">Producto</td>
+              <td>
+                <mat-form-field class="campo">
+                  <input matInput formControlName="descripcion">
+                </mat-form-field>
+                <div class="alerta" *ngIf="!productoForm.controls['descripcion'].valid&&productoForm.controls['descripcion'].touched">
+                    Ingrese un producto
+                  </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button mat-raised-button type="submit" [disabled]="!productoForm.valid">
+                  Actualizar
+                </button>
+              </td>
+            </tr>
+          </table>
+          <br>              
+    </form>       
+  </div>
+  <div fxFlex="20%" fxFlex.md="20%" fxFlex.xs="0"></div>

@@ -1,3 +1,9 @@
+import { ActualizarProductoComponent } from './productos1/actualizar-producto/actualizar-producto.component';
+import { ProductosComponent } from './productos1/productos/productos.component';
+import { ActualizarTrabajosComponent } from './trabajos1/actualizar-trabajos/actualizar-trabajos.component';
+import { NuevoTrabajoComponent } from './trabajos1/nuevo-trabajo/nuevo-trabajo.component';
+import { VerTrabajosComponent } from './trabajos1/ver-trabajos/ver-trabajos.component';
+import { TrabajosComponent } from './trabajos1/trabajos/trabajos.component';
 import { ActualizarActivComponent } from './activs/actualizar-activ/actualizar-activ.component';
 import { NuevoActivComponent } from './activs/nuevo-activ/nuevo-activ.component';
 import { VerActivsComponent } from './activs/ver-activs/ver-activs.component';
@@ -13,6 +19,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VerTrabajadoresComponent } from './trabajadores/ver-trabajadores/ver-trabajadores.component';
 import { TrabajadoresComponent } from './trabajadores/trabajadores/trabajadores.component';
+import { NuevoProductoComponent } from './productos1/nuevo-producto/nuevo-producto.component';
+import { VerProductosComponent } from './productos1/ver-productos/ver-productos.component';
 
 const routes: Routes = [
   {
@@ -70,6 +78,42 @@ const routes: Routes = [
               {
                 path:"actualizar/:id",
                 component: ActualizarActivComponent
+              }
+            ]
+          },
+          {
+            path:"trabajos",
+            component: TrabajosComponent,
+            children:[
+              {
+                path:"lista",
+                component: VerTrabajosComponent
+              },
+              {
+                path:"nuevo",
+                component: NuevoTrabajoComponent
+              },
+              {
+                path:"actualizar/:id",
+                component: ActualizarTrabajosComponent
+              }
+            ]
+          },
+          {
+            path:"productos",
+            component: ProductosComponent,
+            children:[
+              {
+                path:"lista",
+                component: VerProductosComponent
+              },
+              {
+                path:"nuevo",
+                component: NuevoProductoComponent
+              },
+              {
+                path:"actualizar/:id",
+                component: ActualizarProductoComponent
               }
             ]
           }

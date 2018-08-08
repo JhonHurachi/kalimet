@@ -21,7 +21,7 @@ html, body{
     text-align: left;
     background-color:#495468;  
     box-shadow: 2px 2px 5px #999;
-    width: 50%;
+    width: 60%;
 }
 
 .lista{
@@ -54,7 +54,7 @@ html, body{
     width: 100%;
     background-color: #495468;
     color: white;
-    height: 10%;
+    height: 7%;
     text-align: left !important;
     padding-left: 20% !important;
     animation: 0.5s aparecer forwards;
